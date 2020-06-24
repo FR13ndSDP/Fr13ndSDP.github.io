@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Fr13ndSDP&#39;s Blog&#39;</title>
-    <link>http://fr13ndsdp.gitee.io/categories/</link>
+    <link>https://fr13ndsdp.github.io/categories/</link>
     <description>Recent content in Categories on Fr13ndSDP&#39;s Blog&#39;</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://fr13ndsdp.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fr13ndsdp.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

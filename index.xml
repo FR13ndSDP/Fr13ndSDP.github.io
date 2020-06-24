@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fr13ndSDP&#39;s Blog&#39;</title>
-    <link>http://fr13ndsdp.gitee.io/</link>
+    <link>https://fr13ndsdp.github.io/</link>
     <description>Recent content on Fr13ndSDP&#39;s Blog&#39;</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 24 Jun 2020 15:56:48 +0800</lastBuildDate>
     
-	<atom:link href="http://fr13ndsdp.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fr13ndsdp.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Vscode4openfoam</title>
-      <link>http://fr13ndsdp.gitee.io/post/vscode4openfoam/</link>
+      <link>https://fr13ndsdp.github.io/post/vscode4openfoam/</link>
       <pubDate>Wed, 24 Jun 2020 15:56:48 +0800</pubDate>
       
-      <guid>http://fr13ndsdp.gitee.io/post/vscode4openfoam/</guid>
+      <guid>https://fr13ndsdp.github.io/post/vscode4openfoam/</guid>
       <description>Vscode For OpenFOAM 介绍 使用现代化的编辑器vscode进行OpenFOAM编程的配置，大大提升编程体验。
 说明  首先搜索扩展c/c++安装如下的C++扩展：   打开工作文件夹，即你的OpenFOAM求解器存放的文件夹，按住shift+ctrl+p开启命令框，输入c/c++:conf后选择如图的第二条命令，生成.vscode/c_cpp_properties.json   打开Make/options，可以看到所有需要包含的头文件，以-I开头  值得注意的是，其中的$(LIB_SRC)所指的地址就是OpenFOAM源代码路径。
 如果你不知道这个路径，终端下执行
