@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Fr13ndSDP&#39;s Blog&#39;</title>
+    <title>Posts on Fr13ndSDP&#39;s Blog</title>
     <link>https://fr13ndsdp.github.io/post/</link>
-    <description>Recent content in Posts on Fr13ndSDP&#39;s Blog&#39;</description>
+    <description>Recent content in Posts on Fr13ndSDP&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jun 2020 15:56:48 +0800</lastBuildDate>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 24 Jun 2020 16:52:41 +0800</lastBuildDate>
     
 	<atom:link href="https://fr13ndsdp.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Vscode4openfoam</title>
-      <link>https://fr13ndsdp.github.io/post/vscode4openfoam/</link>
+      <title>ODE in OpenFOAM</title>
+      <link>https://fr13ndsdp.github.io/post/ode-in-openfoam/</link>
+      <pubDate>Wed, 24 Jun 2020 16:52:41 +0800</pubDate>
+      
+      <guid>https://fr13ndsdp.github.io/post/ode-in-openfoam/</guid>
+      <description>OpenFOAM 中求解 ODE 一例 作者：邱小平
+本篇介绍如何编写一个小程序来调用 OpenFOAM 的 ODE 求解器来求解任意常微分方程的初值问题。
+1. 数学背景 首先简要看一下涉及的数学背景。对于一阶的常微分方程， $$ y’=f(x,y), \quad x\in[a,b] \
+y(a)=y_0 $$ 常微分方程，如果存在解析解的话，其解应该是一个函数 $y=f(x)$。然而，大多数常微分方程是没有解析解的，只能数值求解。数值方法得到的，是一系列的 $x_0, x_1, \cdots x_n$ 对应的函数值 $y_0, y_1, \cdots y_n$。
+常用的数值解法有：
+  显式欧拉法 这种方法最简单，将区间 $[a,b]$ 分成 n 份，则得到步长 $h=(b-a)/n$。以 $y(a)=y_0$ 为起点，通过下述迭代， $$ y_{m+1} = y_m+hf(x_m,y_m) $$ 可以得到 $x_m=a+m*h$ 处的函数值 $y_m$，此即为常微分方程的数值解。显式欧拉法形式简单，但是只有一阶精度，而且稳定性是有条件的，一般在实际中较少用到。
+  改进的欧拉法 这种方法是在显式欧拉法的基础上改进得到，将显式欧拉法中使用的向前积分改为梯形积分。其迭代形式为 $$ y_{m+1} = y_m +\frac{h}{2}[f(x_m,y_m)+f(x_{m+1},y_{m+1})] $$ 这种方法不是显式地，所以，需要在每一步内进行迭代求解。可以用如下的迭代公式 $$ y_{m+1}^{(n+1)} = y_m +\frac{h}{2}[f(x_m,y_m)+f(x_{m+1},y_{m+1}^{(n)})] $$ 注意，这里的 n 指的是计算 $y_{m+1}$ 的值时的内迭代次数，迭代的初始值 $y_{m+1}^{(0)}$ 可以用显式欧拉公式来给出 $$ y_{m+1}^{(0)} = y_m + hf(x_m, y_m) $$</description>
+    </item>
+    
+    <item>
+      <title>Vscode 4 openfoam</title>
+      <link>https://fr13ndsdp.github.io/post/vscode-4-openfoam/</link>
       <pubDate>Wed, 24 Jun 2020 15:56:48 +0800</pubDate>
       
-      <guid>https://fr13ndsdp.github.io/post/vscode4openfoam/</guid>
+      <guid>https://fr13ndsdp.github.io/post/vscode-4-openfoam/</guid>
       <description>Vscode For OpenFOAM 介绍 使用现代化的编辑器vscode进行OpenFOAM编程的配置，大大提升编程体验。
 说明  首先搜索扩展c/c++安装如下的C++扩展：   打开工作文件夹，即你的OpenFOAM求解器存放的文件夹，按住shift+ctrl+p开启命令框，输入c/c++:conf后选择如图的第二条命令，生成.vscode/c_cpp_properties.json   打开Make/options，可以看到所有需要包含的头文件，以-I开头  值得注意的是，其中的$(LIB_SRC)所指的地址就是OpenFOAM源代码路径。
 如果你不知道这个路径，终端下执行
