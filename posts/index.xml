@@ -1,24 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 | Depei Song&#39;s Blog</title>
-        <link>https://example.com/posts/</link>
+        <link>https://fr13ndsdp.github.io/posts/</link>
         <description>所有文章 | Depei Song&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
                 <title>#200 岛屿数量</title>
-                <link>https://example.com/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</link>
+                <link>https://fr13ndsdp.github.io/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</link>
                 <pubDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://example.com/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</guid>
+                <guid>https://fr13ndsdp.github.io/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</guid>
                 <description>最佳解法：广度优先搜素
 </description>
             </item><item>
-                <title>ODE in OpenFOAM</title>
-                <link>https://example.com/ode-in-openfoam/</link>
+                <title>HUGO搭建博客</title>
+                <link>https://fr13ndsdp.github.io/hugo-go/</link>
                 <pubDate>Wed, 24 Jun 2020 21:50:27 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://example.com/ode-in-openfoam/</guid>
-                <description>作者：邱小平
-本篇介绍如何编写一个小程序来调用 OpenFOAM 的 ODE 求解器来求解任意常微分方程的初值问题。
+                <guid>https://fr13ndsdp.github.io/hugo-go/</guid>
+                <description>使用HUGO&#43;Github Pages搭建个人博客
 </description>
             </item></channel>
 </rss>
