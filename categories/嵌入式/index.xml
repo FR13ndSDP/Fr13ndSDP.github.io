@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>嵌入式 | 分类 | Depei Song&#39;s Blog</title>
+        <link>https://fr13ndsdp.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+        <description>嵌入式 | 分类 | Depei Song&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+                <title>DHT11温度传感器——51单片机</title>
+                <link>https://fr13ndsdp.github.io/dht11/</link>
+                <pubDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/dht11/</guid>
+                <description>由于大创，被迫复习51单片机😭
+</description>
+            </item></channel>
+</rss>

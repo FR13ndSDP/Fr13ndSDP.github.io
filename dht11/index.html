@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DHT11温度传感器——51单片机 | Depei Song&#39;s Blog</title>
+        <meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="DHT11温度传感器——51单片机" />
+<meta property="og:description" content="由于大创，被迫复习51单片机😭" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fr13ndsdp.github.io/dht11/" />
+<meta property="article:published_time" content="2020-06-30T20:05:35+08:00" />
+<meta property="article:modified_time" content="2020-06-30T20:05:35+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DHT11温度传感器——51单片机"/>
+<meta name="twitter:description" content="由于大创，被迫复习51单片机😭"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fr13ndsdp.github.io/dht11/" /><link rel="prev" href="https://fr13ndsdp.github.io/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.zh-cn.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DHT11温度传感器——51单片机",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fr13ndsdp.github.io\/dht11\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "DHT11","wordcount":  930 ,
+        "url": "https:\/\/fr13ndsdp.github.io\/dht11\/","datePublished": "2020-06-30T20:05:35+08:00","dateModified": "2020-06-30T20:05:35+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/fr13ndsdp.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"author": {
+                "@type": "Person",
+                "name": "Fr13ndSDP"
+            },"description": ""
+    }
+    </script></head>
+    <body><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Depei Song&#39;s Blog"><i class='far fa-kiss-wink-heart fa-fw'></i> Depei Song&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Fr13ndSDP" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/dht11/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Depei Song&#39;s Blog"><i class='far fa-kiss-wink-heart fa-fw'></i> Depei Song&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Fr13ndSDP" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/dht11/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DHT11温度传感器——51单片机</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Fr13ndSDP</a></span>&nbsp;
+                    <span class="post-category">收录于<a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+                                <i class="far fa-folder fa-fw"></i>嵌入式
+                            </a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-06-30>2020-06-30</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 930 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading/normal.min.svg"
+        data-sizes="auto"
+        data-srcset="/images/DHT11/dht11.jpg, /images/DHT11/dht11.jpg 1.5x, /images/DHT11/dht11.jpg 2x"
+        data-src="/images/DHT11/dht11.jpg"
+        alt="/images/DHT11/dht11.jpg"
+        title="/images/DHT11/dht11.jpg" /></div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#测量参数">测量参数</a></li>
+        <li><a href="#特性">特性</a></li>
+        <li><a href="#时序">时序</a>
+          <ul>
+            <li><a href="#1-起始信号">1. 起始信号</a></li>
+            <li><a href="#2-读取dht11响应">2. 读取DHT11响应</a></li>
+            <li><a href="#3-送出数据">3. 送出数据</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>由于大创，被迫复习51单片机😭</p>
+<h3 id="测量参数">测量参数</h3>
+<p>测量范围：20-90% RH 0-50℃</p>
+<p>测湿精度：±5% RH</p>
+<p>测温精度：±2℃</p>
+<p>分辨力：1</p>
+<h3 id="特性">特性</h3>
+<ul>
+<li>宽电压供电，3V~5.5V</li>
+<li>数据线接上拉电阻，当长度小于20m，使用5k电阻</li>
+<li>上电后有1s的不稳定状态</li>
+</ul>
+<h3 id="时序">时序</h3>
+<figure>
+    <img src="/images/DHT11/sequential.png"/> <figcaption>
+            <h4>时序</h4>
+        </figcaption>
+</figure>
+
+<h4 id="1-起始信号">1. 起始信号</h4>
+<p>总线空闲状态为高电平，主机把总线拉低等待DHT11响应；</p>
+<p>与MCU相连的SDA数据引脚置为输出模式；</p>
+<p>主机把总线拉低至少18毫秒，然后拉高20-40us等待DHT返回响应信号；</p>
+<h4 id="2-读取dht11响应">2. 读取DHT11响应</h4>
+<p>SDA数据引脚设为输入模式；</p>
+<p>DHT11检测到起始信号后，会将总线拉低80us，然后拉高80us作为响应；</p>
+<h4 id="3-送出数据">3. 送出数据</h4>
+<p>DHT11将送出40bit的数据</p>
+<p><strong>格式</strong>: 40bit数据=8位湿度整数+8位湿度小数+8位温度整数+8位温度小数+8位校验</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;reg51.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;intrins.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define uchar unsigned char
+</span><span class="cp">#define uint unsigned int
+</span><span class="cp"></span>
+<span class="n">sbit</span> <span class="n">Data</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">0</span><span class="p">;</span>   <span class="c1">//定义数据线
+</span><span class="c1"></span><span class="n">uchar</span> <span class="n">rec_dat</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>   <span class="c1">//用于显示的接收数据数组
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">UART_init</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">SCON</span> <span class="o">=</span> <span class="mi">0</span><span class="n">X50</span><span class="p">;</span>
+    <span class="n">TMOD</span> <span class="o">=</span> <span class="mi">0</span><span class="n">X20</span><span class="p">;</span>
+    <span class="n">TH1</span> <span class="o">=</span> <span class="mi">0</span><span class="n">XFD</span><span class="p">;</span>
+    <span class="n">TL1</span> <span class="o">=</span> <span class="mi">0</span><span class="n">XFD</span><span class="p">;</span>
+
+    <span class="n">TR1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">UART_send_byte</span><span class="p">(</span><span class="n">uchar</span> <span class="n">dat</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SBUF</span> <span class="o">=</span> <span class="n">dat</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">TI</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> 
+    <span class="n">TI</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">UART_send_string</span><span class="p">(</span><span class="n">uchar</span> <span class="o">*</span><span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">buf</span> <span class="o">!=</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">UART_send_byte</span><span class="p">(</span><span class="o">*</span><span class="n">buf</span><span class="o">++</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">delay</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">uchar</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">m</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">m</span><span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">120</span><span class="p">;</span><span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">s</span><span class="o">--</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">DHT11_delay_us</span><span class="p">(</span><span class="n">uchar</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">--</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">DHT11_delay_ms</span><span class="p">(</span><span class="n">uint</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">uint</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">z</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">110</span><span class="p">;</span><span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">--</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">DHT11_start</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">Data</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+   <span class="n">DHT11_delay_us</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+   <span class="n">Data</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">DHT11_delay_ms</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>   <span class="c1">//延时18ms以上
+</span><span class="c1"></span>   <span class="n">Data</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+   <span class="n">DHT11_delay_us</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">uchar</span> <span class="nf">DHT11_rec_byte</span><span class="p">()</span>      <span class="c1">//接收一个字节
+</span><span class="c1"></span><span class="p">{</span>
+   <span class="n">uchar</span> <span class="n">i</span><span class="p">,</span><span class="n">dat</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>    <span class="c1">//从高到低依次接收8位数据
+</span><span class="c1"></span>   <span class="p">{</span>          
+      <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Data</span><span class="p">);</span>   <span class="c1">////等待50us低电平过去
+</span><span class="c1"></span>      <span class="n">DHT11_delay_us</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>     <span class="c1">//延时60us，如果还为高则数据为1，否则为0 
+</span><span class="c1"></span>      <span class="n">dat</span><span class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">;</span>           <span class="c1">//移位使正确接收8位数据，数据为0时直接移位
+</span><span class="c1"></span>      <span class="k">if</span><span class="p">(</span><span class="n">Data</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">//数据为1时，使dat加1来接收数据1
+</span><span class="c1"></span>         <span class="n">dat</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">Data</span><span class="p">);</span>  <span class="c1">//等待数据线拉低    
+</span><span class="c1"></span>    <span class="p">}</span>  
+    <span class="k">return</span> <span class="n">dat</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">DHT11_receive</span><span class="p">()</span>      <span class="c1">//接收40位的数据
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">uchar</span> <span class="n">R_H</span><span class="p">,</span><span class="n">R_L</span><span class="p">,</span><span class="n">T_H</span><span class="p">,</span><span class="n">T_L</span><span class="p">,</span><span class="n">RH</span><span class="p">,</span><span class="n">RL</span><span class="p">,</span><span class="n">TH</span><span class="p">,</span><span class="n">TL</span><span class="p">,</span><span class="n">revise</span><span class="p">;</span> 
+    <span class="n">DHT11_start</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Data</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">Data</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>   <span class="c1">//等待拉高     
+</span><span class="c1"></span>        <span class="n">DHT11_delay_us</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>  <span class="c1">//拉高后延时80us
+</span><span class="c1"></span>        <span class="n">R_H</span><span class="o">=</span><span class="n">DHT11_rec_byte</span><span class="p">();</span>    <span class="c1">//接收湿度高八位  
+</span><span class="c1"></span>        <span class="n">R_L</span><span class="o">=</span><span class="n">DHT11_rec_byte</span><span class="p">();</span>    <span class="c1">//接收湿度低八位  
+</span><span class="c1"></span>        <span class="n">T_H</span><span class="o">=</span><span class="n">DHT11_rec_byte</span><span class="p">();</span>    <span class="c1">//接收温度高八位  
+</span><span class="c1"></span>        <span class="n">T_L</span><span class="o">=</span><span class="n">DHT11_rec_byte</span><span class="p">();</span>    <span class="c1">//接收温度低八位
+</span><span class="c1"></span>        <span class="n">revise</span><span class="o">=</span><span class="n">DHT11_rec_byte</span><span class="p">();</span> <span class="c1">//接收校正位
+</span><span class="c1"></span>
+        <span class="n">DHT11_delay_us</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>    <span class="c1">//结束
+</span><span class="c1"></span>
+        <span class="k">if</span><span class="p">((</span><span class="n">R_H</span><span class="o">+</span><span class="n">R_L</span><span class="o">+</span><span class="n">T_H</span><span class="o">+</span><span class="n">T_L</span><span class="p">)</span><span class="o">==</span><span class="n">revise</span><span class="p">)</span>      <span class="c1">//校正
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">RH</span><span class="o">=</span><span class="n">R_H</span><span class="p">;</span>
+            <span class="n">RL</span><span class="o">=</span><span class="n">R_L</span><span class="p">;</span>
+            <span class="n">TH</span><span class="o">=</span><span class="n">T_H</span><span class="p">;</span>
+            <span class="n">TL</span><span class="o">=</span><span class="n">T_L</span><span class="p">;</span>
+        <span class="p">}</span> 
+        <span class="cm">/*数据处理，方便显示*/</span>
+        <span class="cm">/*
+</span><span class="cm">        rec_dat[0]=&#39;0&#39;+(TH/10);
+</span><span class="cm">        rec_dat[1]=&#39;0&#39;+(TH%10);
+</span><span class="cm">        rec_dat[2]=&#39;.&#39;;
+</span><span class="cm">        rec_dat[3]=&#39;0&#39;+(TL/10);
+</span><span class="cm">        rec_dat[4]=&#39;0&#39;+(TL%10);
+</span><span class="cm">        rec_dat[5]=&#39;C&#39;;
+</span><span class="cm">        rec_dat[6]=&#39;\r&#39;;
+</span><span class="cm">        rec_dat[7]=&#39;\n&#39;;
+</span><span class="cm">        */</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;l&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;=&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;0&#39;</span><span class="o">+</span><span class="p">(</span><span class="n">RH</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;0&#39;</span><span class="o">+</span><span class="p">(</span><span class="n">RH</span><span class="o">%</span><span class="mi">10</span><span class="p">);</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;,&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;x&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;=&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;0&#39;</span><span class="o">+</span><span class="p">(</span><span class="n">TH</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;0&#39;</span><span class="o">+</span><span class="p">(</span><span class="n">TH</span><span class="o">%</span><span class="mi">10</span><span class="p">);</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\r&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+        <span class="n">rec_dat</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">UART_init</span><span class="p">();</span>
+   <span class="n">DHT11_delay_ms</span><span class="p">(</span><span class="mi">1500</span><span class="p">);</span>    <span class="c1">//DHT11上电后要等待1S以越过不稳定状态在此期间不能发送任何指令
+</span><span class="c1"></span>   <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="n">DHT11_receive</span><span class="p">();</span>
+       <span class="n">UART_send_string</span><span class="p">(</span><span class="n">rec_dat</span><span class="p">);</span>
+       <span class="n">UART_send_byte</span><span class="p">(</span><span class="sc">&#39;\r&#39;</span><span class="p">);</span>
+       <span class="n">UART_send_byte</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+       <span class="n">delay</span><span class="p">();</span>
+       <span class="c1">//delay();
+</span><span class="c1"></span>   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2020-06-30 更新</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/dht11/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机" data-hashtags="DHT11"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://fr13ndsdp.github.io/dht11/" data-hashtag="DHT11"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机"><i class="fab fa-line fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机" data-image="/images/DHT11/dht11.jpg"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://fr13ndsdp.github.io/dht11/" data-title="DHT11温度传感器——51单片机"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/dht11/">DHT11</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" class="prev" rel="prev" title="#200 岛屿数量"><i class="fas fa-angle-left fa-fw"></i>#200 岛屿数量</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.72.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.0"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Fr13ndSDP</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript">
+    window.config = {"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"headerMode":{"desktop":"fixed","mobile":"auto"},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","noResultsFound":"没有找到结果","type":"algolia"}};
+</script><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2CPromise%2CObject.entries%2CObject.assign%2CObject.values%2Cfetch%2CElement.prototype.after%2CArray.prototype.fill%2CIntersectionObserver%2CArray.from%2CArray.prototype.find%2CMath.sign"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
