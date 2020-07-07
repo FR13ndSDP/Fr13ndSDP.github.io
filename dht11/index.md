@@ -1,7 +1,7 @@
-# DHT11温度传感器——51单片机
+# DHT11温湿度传感器——51单片机
 
 
-由于大创，被迫复习51单片机:sob:
+DHT11温湿度传感器的使用——C51代码
 
 <!--more-->
 
@@ -20,6 +20,7 @@
 - 宽电压供电，3V~5.5V
 - 数据线接上拉电阻，当长度小于20m，使用5k电阻
 - 上电后有1s的不稳定状态
+- **DHT11 只有在接收到开始信号后才触发一次温湿度采集**，如果没有接收到主机发送复位信号，DHT11 不主动进行温湿度采集。当数据采集完毕且无开始信号后，DHT11 自动切换到低速模式。
 
 ### 时序
 
@@ -43,9 +44,19 @@ DHT11检测到起始信号后，会将总线拉低80us，然后拉高80us作为�
 
 DHT11将送出40bit的数据
 
-**格式**: 40bit数据=8位湿度整数+8位湿度小数+8位温度整数+8位温度小数+8位校验
+**格式**: 40bit数据=8位湿度整数+8位湿度小数+8位温度整数+8位温度小数+8位校验，当温湿度数据和等于校验位时校验通过。
 
+似乎小数位全是零，而且整数数据的计算如下例所示
 
+`00011000 00000000` = 24.0
+
+因此通过循环移位接收高八位数据后转为字符串输出即可。
+
+DHT11 在拉高总线 80us 后开始传输数据。每 1bit 数据都以 50us 低电平时隙开始，告诉主机开始传输一位数据了。DHT11 以高电平的长短定义数据位是 0 还是 1，当 50us 低电平时隙过后拉高总线，高电平持续 26~28us 表示数据“0”；持续 70us 表示数据“1”。
+
+当最后 1bit 数据传送完毕后，DHT11 拉低总线 50us，表示数据传输完毕，随后总线由上拉电阻拉高进入空闲状态。
+
+### 代码
 
 ```c
 #include <reg51.h>
@@ -57,48 +68,6 @@ DHT11将送出40bit的数据
 sbit Data=P1^0;   //定义数据线
 uchar rec_dat[12];   //用于显示的接收数据数组
 
-void UART_init()
-{
-    SCON = 0X50;
-    TMOD = 0X20;
-    TH1 = 0XFD;
-    TL1 = 0XFD;
-
-    TR1 = 1;
-}
-
-void UART_send_byte(uchar dat)
-{
-    SBUF = dat;
-    while (TI == 0); 
-    TI = 0;
-}
-
-void UART_send_string(uchar *buf)
-{
-    while (*buf != '0')
-    {
-        UART_send_byte(*buf++);
-    }
-}
-
-void delay()
-{
-    uchar m,n,s;
-    for (m=20;m>0;m--)
-    {
-        for (n=20;n>0;n--)
-        {
-            for (s=120;s>0;s--);
-        }
-    }
-}
-
-void DHT11_delay_us(uchar n)
-{
-    while(--n);
-}
-
 void DHT11_delay_ms(uint z)
 {
    uint i,j;
@@ -106,7 +75,7 @@ void DHT11_delay_ms(uint z)
       for(j=110;j>0;j--);
 }
 
-void DHT11_start()
+void DHT11_start()  // 开始信号
 {
    Data=1;
    DHT11_delay_us(2);
@@ -134,8 +103,8 @@ uchar DHT11_rec_byte()      //接收一个字节
 void DHT11_receive()      //接收40位的数据
 {
     uchar R_H,R_L,T_H,T_L,RH,RL,TH,TL,revise; 
-    DHT11_start();
-    if(Data==0)
+    DHT11_start(); // 向DHT11发送开始信号
+    if(Data==0) // DHT11先拉低后拉高总线作为响应
     {
         while(Data==0);   //等待拉高     
         DHT11_delay_us(40);  //拉高后延时80us
@@ -155,16 +124,6 @@ void DHT11_receive()      //接收40位的数据
             TL=T_L;
         } 
         /*数据处理，方便显示*/
-        /*
-        rec_dat[0]='0'+(TH/10);
-        rec_dat[1]='0'+(TH%10);
-        rec_dat[2]='.';
-        rec_dat[3]='0'+(TL/10);
-        rec_dat[4]='0'+(TL%10);
-        rec_dat[5]='C';
-        rec_dat[6]='\r';
-        rec_dat[7]='\n';
-        */
         rec_dat[0]='l';
         rec_dat[1]='=';
         rec_dat[2]='0'+(RH/10);
@@ -182,16 +141,46 @@ void DHT11_receive()      //接收40位的数据
 
 void main()
 {
-   UART_init();
+   UART_init(); // 串口初始化
    DHT11_delay_ms(1500);    //DHT11上电后要等待1S以越过不稳定状态在此期间不能发送任何指令
    while(1)
    {
        DHT11_receive();
-       UART_send_string(rec_dat);
-       UART_send_byte('\r');
-       UART_send_byte('\n');
-       delay();
-       //delay();
+       UART_send_string(rec_dat); //串口发送数据
+       delay(); // 延时一定时间
    }
 }
 ```
+
+### UART传输设置
+
+```c
+void UART_init()
+{
+    // 波特率9600
+    SCON = 0X50; //工作于方式1  8位无校验异步通信的收发模式，并清空收发中断标志位
+    TMOD = 0X20; // 定时器1 8位自动加载计数器
+    // 定时器初值，与波特率有关
+    TH1 = 0XFD; 
+    TL1 = 0XFD; 
+
+    TR1 = 1; // 启动定时器1
+}
+
+void UART_send_byte(uchar dat) // 发送一个字节
+{
+    SBUF = dat;
+    while (TI == 0); // 等待直到发送成功
+    TI = 0;
+}
+
+void UART_send_string(uchar *buf) // 发送字符串
+{
+    while (*buf != '0')
+    {
+        UART_send_byte(*buf++);
+    }
+}
+```
+
+

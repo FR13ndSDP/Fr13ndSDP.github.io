@@ -3,20 +3,35 @@
         <title>所有文章 | Depei Song&#39;s Blog</title>
         <link>https://fr13ndsdp.github.io/posts/</link>
         <description>所有文章 | Depei Song&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-                <title>DHT11温度传感器——51单片机</title>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Jul 2020 10:29:37 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+                <title>#739 每日温度</title>
+                <link>https://fr13ndsdp.github.io/739-daily-temperatures/</link>
+                <pubDate>Tue, 07 Jul 2020 10:29:37 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/739-daily-temperatures/</guid>
+                <description>单调栈解法
+</description>
+            </item><item>
+                <title>#752 Open the Lock</title>
+                <link>https://fr13ndsdp.github.io/752-open-the-lock/</link>
+                <pubDate>Thu, 02 Jul 2020 01:06:40 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/752-open-the-lock/</guid>
+                <description>题目 你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： &amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;, &amp;lsquo;2&amp;rsquo;, &amp;lsquo;3&amp;rsquo;, &amp;lsquo;4&amp;rsquo;, &amp;lsquo;5&amp;rsquo;, &amp;lsquo;6&amp;rsquo;, &amp;lsquo;7&amp;rsquo;, &amp;lsquo;8&amp;rsquo;, &amp;lsquo;9&amp;rsquo; 。每个拨轮可以自由旋转：例如把 &amp;lsquo;9&amp;rsquo; 变为 &amp;lsquo;0&amp;rs</description>
+            </item><item>
+                <title>DHT11温湿度传感器——51单片机</title>
                 <link>https://fr13ndsdp.github.io/dht11/</link>
                 <pubDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
                 <guid>https://fr13ndsdp.github.io/dht11/</guid>
-                <description>由于大创，被迫复习51单片机😭
+                <description>DHT11温湿度传感器的使用——C51代码
 </description>
             </item><item>
                 <title>#200 岛屿数量</title>
-                <link>https://fr13ndsdp.github.io/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</link>
+                <link>https://fr13ndsdp.github.io/200-number-of-islands/</link>
                 <pubDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</guid>
+                <guid>https://fr13ndsdp.github.io/200-number-of-islands/</guid>
                 <description>最佳解法：广度优先搜素
 </description>
             </item><item>
