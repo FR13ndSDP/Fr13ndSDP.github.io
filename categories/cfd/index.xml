@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CFD | 分类 | Depei Song&#39;s Blog</title>
+        <link>https://fr13ndsdp.github.io/categories/cfd/</link>
+        <description>CFD | 分类 | Depei Song&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 22 Oct 2020 23:01:19 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
+                <title>Simple algorithm</title>
+                <link>https://fr13ndsdp.github.io/simple-algorithm/</link>
+                <pubDate>Thu, 22 Oct 2020 23:01:19 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/simple-algorithm/</guid>
+                <description>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
+</description>
+            </item></channel>
+</rss>
