@@ -7,7 +7,7 @@ SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
 
 #### 1.问题描述
 
-![](/images/simple-algorithm/problem.jpg))
+![](/images/simple-algorithm/problem.jpg)
 
 - 流体密度 $\rho = 1\ kg/m^3$, 不可压缩，无粘流动
 - 喷管长度 $L = 0.2\ m$
