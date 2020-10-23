@@ -29,7 +29,7 @@ SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
 
 解析解可由伯努利定律得到
 $$
-p_0 = p_E + 1/2\rho M^2/(\rho A_E)^2
+p_0 = p_{E} + 1/2\rho M^2/(\rho A_E)^2
 $$
 其中$M$为质量流量，可得到精确解为$0.44271\ kg/s$
 
@@ -47,13 +47,14 @@ Semi-Implicit Method for Pressure Linked Equations.
 
 带有速度松弛的离散动量方程：
 $$
-\frac{a_{i,J}}{\alpha_u}u_{i,J} = \sum a_{nb}u_{nb}+(p_{I-1,J} - P_{I,J})A_{i,J}+b_{i,J}+\frac{(1-\alpha_u)a_{i,J}}{\alpha_u}u_{i,J}^{(n-1)}
+\frac{a_{i,J}}{\alpha_u}u_{i,J} = \sum a_{nb}u_{nb}+(p_{I-1,J} - p_{I,J})A_{i,J}+b_{i,J}+\frac{(1-\alpha_u)a_{i,J}}{\alpha_u}u_{i,J}^{(n-1)}
 $$
 下面是一个代码不规范但是能说明具体实施过程的例程，对流项使用一阶迎风差分。
 
 
 ```python
 #!/usr/bin/python3
+# Copyright (c) 2020 Fr13ndSDP All rights reserved.
 import numpy as np
 import matplotlib.pyplot as plt
 
