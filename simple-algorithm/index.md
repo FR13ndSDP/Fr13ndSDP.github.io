@@ -33,8 +33,27 @@ p_0 = p_E + 1/2\rho M^2/(\rho A_E)^2
 $$
 其中$M$为质量流量，可得到精确解为$0.44271\ kg/s$
 
+#### 3.SIMPLE算法
+
+Semi-Implicit Method for Pressure Linked Equations.
+
+这是一个求解速度-压力耦合的经典迭代算法
+
+实施过程中需要注意的点：
+
+- 边界条件的处理，在本例中入口边界使用了延迟修正（deferred correction）增强迭代稳定性
+- 松弛因子的选取，一般取$\alpha_u + \alpha_p = 1$，压力松弛因子要取得相对小避免发散
+- 速度的松弛放在离散动量方程的求解中，压力松弛在解出压力修正值之后
+
+带有速度松弛的离散动量方程：
+$$
+\frac{a_{i,J}}{\alpha_u}u_{i,J} = \sum a_{nb}u_{nb}+(p_{I-1,J} - P_{I,J})A_{i,J}+b_{i,J}+\frac{(1-\alpha_u)a_{i,J}}{\alpha_u}u_{i,J}^{(n-1)}
+$$
+下面是一个代码不规范但是能说明具体实施过程的例程，对流项使用一阶迎风差分。
+
 
 ```python
+#!/usr/bin/python3
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -103,14 +122,14 @@ while(max(sp) > 1e-5):
         aeu[i] = 0  # upwind scheme
         apu[i] = rho*(u[i]+u[i+1])/2 * Ap[i+1]  # awu[i]+aeu[i]+ (F_e-F_w)
         apu[i] = apu[i]/alpha_u  # velocity relaxation
-        suu[i] = Au[i]*(p[i]-p[i+1]) + (1-alpha_u)*apu[i]*u[i]
+        suu[i] = Au[i]*(p[i]-p[i+1]) + (1-alpha_u)*apu[i]*u[i] 
         d[i] = Au[i]/apu[i]
 
     apu[0] = rho*(u[0]+u[1])/2*Ap[1] + rho * \
         (u[0]*Au[0]/Ap[0])*Ap[0]*0.5*(Au[0]/Ap[0])**2
     apu[0] = apu[0]/alpha_u  # velocity relaxation
     suu[0] = Au[0]*(p0 - p[1])+rho*(u[0]*Au[0]/Ap[0])*Ap[0] * \
-        (Au[0]/Ap[0])*u[0]+(1-alpha_u)*apu[0]*u[0]
+        (Au[0]/Ap[0])*u[0]+(1-alpha_u)*apu[0]*u[0] #deffered correction
     d[0] = Au[0]/apu[0]
 
     awu[nu-1] = rho*(u[nu-2]+u[nu-1])/2*Ap[nu-1]
@@ -175,7 +194,7 @@ print("momentum residual:", max(sp))
 
 ![velocity](/images/simple-algorithm/output_1_3.png)
 
-采用压力方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.455\ kg/s$，并得到了压力、速度的分布。
+采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.455\ kg/s$，并得到了压力、速度的分布。
 
 
 
