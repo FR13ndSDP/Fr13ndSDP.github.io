@@ -67,34 +67,37 @@ import matplotlib.pyplot as plt
 k = 5
 q = 20e3
 a = 0.01
-n = 20 # finest 
-n2 = 10 # coarser
-n3 = 5 # even coarser
+n = 20
+n2 = 10
+n3 = 5
 tl = 100
 tr = 500
 l = 1.0
-res = 1
-cnt = 0
-aw = np.zeros(n)
-ap = np.zeros(n)
-ae = np.zeros(n)
-su = np.zeros(n)
-sp = np.zeros(n)
-aw2 = np.zeros(n2)
-ap2 = np.zeros(n2)
-ae2 = np.zeros(n2)
-su2 = np.zeros(n2)
-sp2 = np.zeros(n2)
-aw3 = np.zeros(n3)
-ap3 = np.zeros(n3)
-ae3 = np.zeros(n3)
-su3 = np.zeros(n3)
-sp3 = np.zeros(n3)
-phi = np.ones(n)*150 #initial temperature
-residual=[]
 
-# G-S iterative method, itr stands for itereation times
-def gs(aw,ap,ae,su,phi,itr):
+
+def restrict(vec):
+    n = int(np.size(vec)/2)
+    vec_coarse = np.zeros(n)
+    for i in range(n):
+        vec_coarse[i] = (vec[2*i]+vec[2*i+1])/2
+
+    return vec_coarse
+
+
+def prolong(vec):
+    n = np.size(vec)
+    vec_fine = np.ones(n*2)*vec[0]/2
+    for i in range(1, n*2):
+        if (i % 2 == 0):
+            vec_fine[i] = (vec[int(i/2) - 1] + vec[int(i/2)])/2
+        else:
+            vec_fine[i] = vec[int(i/2)]
+
+    return vec_fine
+
+
+# iter stands for itereation times
+def gsIter(aw, ap, ae, su, phi, itr):
     n = np.size(aw)
     phi0 = phi
     for i in range(itr):
@@ -105,39 +108,42 @@ def gs(aw,ap,ae,su,phi,itr):
         phi[n-1] = (aw[n-1]*phi[n-2]+su[n-1])/ap[n-1]
         for i in range(n):
             phi0[i] = phi[i]
-            
+
     return phi
 
-# calculate residual of A.phi = su
-def calRes(su,aw,ap,ae,phi):
+
+def residual(su, aw, ap, ae, phi):
     n = np.size(su)
     res = np.zeros(n)
-    for i in range(1,n-1):
+    for i in range(1, n-1):
         res[i] = su[i] - (-aw[i]*phi[i-1]+ap[i]*phi[i]-ae[i]*phi[i+1])
         res[0] = su[0] - ap[0]*phi[0] + ae[0]*phi[1]
         res[n-1] = su[n-1] - ap[n-1]*phi[n-1] + aw[n-1]*phi[n-2]
     return res
 
-# get matrix coeff, num is nodal number
-def calMatrix(aw,ap,ae,su,sp,num):
-    for i in range(1,num-1):
+
+def getMatrix(num):
+    aw = np.zeros(num)
+    ap = np.zeros(num)
+    ae = np.zeros(num)
+    su = np.zeros(num)
+    for i in range(1, num-1):
         aw[i] = k*a*num/l
         ae[i] = aw[i]
         su[i] = q*a*l/num
-        ap[i] = aw[i]+ae[i] - sp[i]
-    
+        ap[i] = aw[i]+ae[i]
+
     aw[0] = 0
     ae[num-1] = 0
     ae[0] = k*a*num/l
-    aw[num-1] = k*a*num/l 
+    aw[num-1] = k*a*num/l
     su[0] = q*a*l/n+2*k*a*num/l*tl
     su[num-1] = q*a*l/n+2*k*a*num/l*tr
-    sp[0] = -2*k*a*num/l
-    sp[num-1] = sp[0]
-    ap[0] = aw[0]+ae[0] - sp[0]
-    ap[num-1] = aw[num-1]+ae[num-1] - sp[num-1]
+    ap[0] = aw[0]+ae[0] + 2*k*a*num/l
+    ap[num-1] = aw[num-1]+ae[num-1] + 2*k*a*num/l
+    return aw, ap, ae, su
 
-# the TDMA
+
 def sol(aw, ap, ae, su):
     n = np.size(aw)
     p = np.zeros(n)
@@ -155,109 +161,83 @@ def sol(aw, ap, ae, su):
 
     return phi
 
-# prepare matrix
-calMatrix(aw,ap,ae,su,sp,n)
-#calMatrix(aw2,ap2,ae2,su2,sp2,n2)
-#calMatrix(aw3,ap3,ae3,su3,sp3,n3)
-for i in range(n2):
-    aw2[i] = (aw[2*i]+aw[2*i+1])/4
-    ap2[i] = (ap[2*i]+ap[2*i+1])/4
-    ae2[i] = (ae[2*i]+ae[2*i+1])/4
 
-for i in range(n3):
-    aw3[i] = (aw[2*i]+aw[2*i+1])/8
-    ap3[i] = (ap[2*i]+ap[2*i+1])/8
-    ae3[i] = (ae[2*i]+ae[2*i+1])/8
+if __name__ == '__main__':
+    # prepare matrix
+    aw, ap, ae, su = getMatrix(n)
+    aw2, ap2, ae2, su2 = getMatrix(int(n/2))
+    aw3, ap3, ae3, su3 = getMatrix(int(n/4))
+    phi = np.ones(n)*150
+    phi = gsIter(aw, ap, ae, su, phi, 3)
 
-# pre-smoother
-phi = gs(aw,ap,ae,su,phi,3)
-while(res > 1e-6):
-    cnt += 1
-    # finest mesh
-    phi = gs(aw,ap,ae,su,phi,2)
-    r = calRes(su,aw,ap,ae,phi)
-    res = np.mean(r)
-    residual.append(res)
-    print("iter ", cnt, " res:", res)
-    # ------------- restriction -----------------
-    # AMG,Algebraic Multi-Grid
-    r2 = np.zeros(n2)
-    for i in range(n2):
-        r2[i] = (r[2*i]+r[2*i+1])/2
+    res = 1
+    cnt = 0
+    res_list = []
+    while(res > 1e-6):
+        # finest mesh
+        phi = gsIter(aw, ap, ae, su, phi, 2)
+        r = residual(su, aw, ap, ae, phi)
+        res = np.mean(r)
+        res_list.append(res)
+        cnt += 1
+        print("iter: ", cnt, " res:", res)
+        # ------------- restriction -----------------
+        r2 = restrict(r)
+        e2 = gsIter(aw2, ap2, ae2, r2, np.zeros(int(n/2)), 10)
+        r4 = residual(r2, aw2, ap2, ae2, e2)
+        rr = restrict(r4)
+        #e4 = gsIter(aw3,ap3,ae3,rr,np.zeros(int(n/4)),10)
+        e4 = sol(aw3, ap3, ae3, rr)
+        # ------------ prolongation -----------------
+        eff = prolong(e4)
+        e2 = e2+eff
+        e2 = gsIter(aw2, ap2, ae2, r2, e2, 2)
+        ef = prolong(e2)
+        phi = phi + ef
 
-    e2 = gs(aw2,ap2,ae2,r2,np.zeros(n2),10)
-    r4 = calRes(r2,aw2,ap2,ae2,e2)
-    rr = np.zeros(n3)
-    for i in range(n3):
-        rr[i] = (r4[2*i]+r4[2*i+1])/2
-
-    #e4 = gs(aw3,ap3,ae3,rr,np.zeros(n3),15)
-    e4 = sol(aw3,ap3,ae3,rr) #TDMA
-    # ------------ prolongation -----------------
-    e4f = np.zeros(n3)
-    for i in range(1,n3):
-        e4f[i] = (e4[i-1]+e4[i])/2
-    e4f[0] = e4[0]/2
-
-    ef = np.zeros(n2)
-    for i in range(n3):
-        ef[2*i] = e4f[i]
-        ef[2*i+1] = e4[i]
-
-    e2 = e2+ef
-
-    e2f = np.zeros(n2)
-    for i in range(1,n2):
-        e2f[i] = (e2[i-1]+e2[i])/2
-    e2f[0] = e2[0]/2
-
-    ef = np.zeros(n)
-    for i in range(n2):
-        ef[2*i] = e2f[i]
-        ef[2*i+1] = e2[i]
-
-    phi = phi + ef
-
-plt.yscale('log')
-plt.figure(1)
-plt.plot(residual)
+    plt.yscale('log')
+    plt.figure(1)
+    plt.plot(res_list)
+    plt.show()
 ```
 
 ```
-iter  1  res: 11.51138138623885
-iter  2  res: 4.875620881608211
-iter  3  res: 2.602901928460952
-iter  4  res: 1.422100853290567
-iter  5  res: 0.7758343268577136
-iter  6  res: 0.4203458124854336
-iter  7  res: 0.2254215545573146
-iter  8  res: 0.11960755164729164
-iter  9  res: 0.06276945082515226
-iter  10  res: 0.032564428509382994
-iter  11  res: 0.0167036525882736
-iter  12  res: 0.008482507190078082
-iter  13  res: 0.004272579731050996
-iter  14  res: 0.0021384245230478883
-iter  15  res: 0.0010650972956540272
-iter  16  res: 0.0005285472418648851
-iter  17  res: 0.00026155267793797065
-iter  18  res: 0.00012915144727969617
-iter  19  res: 6.366719591426318e-05
-iter  20  res: 3.134495560459527e-05
-iter  21  res: 1.5416163657278047e-05
-iter  22  res: 7.575916905011582e-06
-iter  23  res: 3.720636607340566e-06
-iter  24  res: 1.8263322317579877e-06
-iter  25  res: 8.961238705751384e-07
+iter:  1  res: 11.51138138623885
+iter:  2  res: 5.799009148342661  
+iter:  3  res: 3.156842353629591  
+iter:  4  res: 1.7547835232202516 
+iter:  5  res: 0.9784454646211088 
+iter:  6  res: 0.5436277301623192 
+iter:  7  res: 0.3001937730563299 
+iter:  8  res: 0.1646310272677738 
+iter:  9  res: 0.08963673469351363
+iter:  10  res: 0.048440945656969346
+iter:  11  res: 0.025991466883453995
+iter:  12  res: 0.013859948257314158
+iter:  13  res: 0.007354351924635694
+iter:  14  res: 0.003887729670987028
+iter:  15  res: 0.0020495022264498176
+iter:  16  res: 0.0010782926067378184
+iter:  17  res: 0.0005665134079634981
+iter:  18  res: 0.0002973377378992836
+iter:  19  res: 0.0001559499926912622
+iter:  20  res: 8.175372336438613e-05
+iter:  21  res: 4.284309166848743e-05
+iter:  22  res: 2.2446576915058357e-05
+iter:  23  res: 1.1758364624370188e-05
+iter:  24  res: 6.158758171181944e-06
+iter:  25  res: 3.2255524303081986e-06
+iter:  26  res: 1.6892364982368235e-06
+iter:  27  res: 8.846259248684873e-07
 ```
 
-经过25次V循环，迭代收敛。
+经过27次V循环，迭代收敛。
 
 ### 分析
 
 ![result](/images/multigrid-method/result.png)
 
-可以看到，单纯的高斯赛德尔迭代需要近660步才能迭代到收敛，而采用多重网格后，只需要25个V循环，每个循环由2次细网格上的GS迭代和10次较粗网格上的GS迭代以及最粗网格的TDMA组成，大大减少了计算量。
+可以看到，单纯的高斯赛德尔迭代需要近660步才能迭代到收敛，而采用多重网格后，只需要27个V循环，每个循环由2次细网格上的GS迭代和10次较粗网格上的GS迭代以及最粗网格的TDMA组成，大大减少了计算量。
 
 
 
