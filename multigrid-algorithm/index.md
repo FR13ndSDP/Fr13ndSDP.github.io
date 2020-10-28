@@ -13,7 +13,7 @@ $$
 $$
 当使用标准迭代求解器（Gauss-Seidel，Jacobi，SOR）时，观察到收敛速度趋于“停顿”，即在几次迭代后无法有效减少误差，细化网格后，问题更加突出。 实际上，研究表明，收敛速度是误差场频率的函数，即误差从节点到节点的梯度。 如果误差以高频模式分布，则收敛速度很快。 然而，在最初的几次迭代之后，误差场被平滑（变为低频），使得收敛速度变差。
 
-一个显而易见的想法是：既然平滑后的误差在细网格上变为了低频，那么这个误差可以在粗网格上得到有效消除，因为细网格上的高频可能是粗网格上的高频！
+一个显而易见的想法是：既然平滑后的误差在细网格上变为了低频，那么这个误差可以在粗网格上得到有效消除，因为细网格上的低频可能是粗网格上的高频！
 
 迭代得到的中间值设为$\vec{y}$，则
 $$
@@ -231,7 +231,7 @@ iter:  26  res: 1.6892364982368235e-06
 iter:  27  res: 8.846259248684873e-07
 ```
 
-经过27次V循环，迭代收敛。
+设定迭代判据为平均残差（绝对值）小于$1\times 10^{-6}$时收敛，经过27次V循环，迭代收敛。
 
 ### 分析
 
@@ -243,10 +243,8 @@ iter:  27  res: 8.846259248684873e-07
 
 ### 参考
 
-[1] [MIT courseware](https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/readings/am63.pdf)
+- [1] [MIT courseware](https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/readings/am63.pdf)
 
-[2] H.K.Versteeg, An introduction to computational fluid dynamics: the finite volume method
+- [2] H.K.Versteeg, An introduction to computational fluid dynamics: the finite volume method
 
-[3]  [CFD-online Multigrid methods](https://www.cfd-online.com/Wiki/Multigrid_methods)
-
-
+- [3]  [CFD-online Multigrid methods](https://www.cfd-online.com/Wiki/Multigrid_methods)

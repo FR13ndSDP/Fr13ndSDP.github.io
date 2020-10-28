@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "Multi-grid","wordcount":  2023 ,
+            },"genre": "posts","keywords": "Multi-grid","wordcount":  2061 ,
         "url": "https:\/\/fr13ndsdp.github.io\/multigrid-algorithm\/","datePublished": "2020-10-25T19:41:49+08:00","dateModified": "2020-10-25T19:41:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -124,7 +124,7 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-10-25>2020-10-25</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 2023 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2061 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -150,7 +150,7 @@ $$
 \mathbf{A}\vec{x} = \vec{b}
 $$
 当使用标准迭代求解器（Gauss-Seidel，Jacobi，SOR）时，观察到收敛速度趋于“停顿”，即在几次迭代后无法有效减少误差，细化网格后，问题更加突出。 实际上，研究表明，收敛速度是误差场频率的函数，即误差从节点到节点的梯度。 如果误差以高频模式分布，则收敛速度很快。 然而，在最初的几次迭代之后，误差场被平滑（变为低频），使得收敛速度变差。</p>
-<p>一个显而易见的想法是：既然平滑后的误差在细网格上变为了低频，那么这个误差可以在粗网格上得到有效消除，因为细网格上的高频可能是粗网格上的高频！</p>
+<p>一个显而易见的想法是：既然平滑后的误差在细网格上变为了低频，那么这个误差可以在粗网格上得到有效消除，因为细网格上的低频可能是粗网格上的高频！</p>
 <p>迭代得到的中间值设为$\vec{y}$，则
 $$
 \mathbf{A}\vec{y} = \vec{b} - \vec{r}
@@ -546,7 +546,7 @@ iter:  26  res: 1.6892364982368235e-06
 iter:  27  res: 8.846259248684873e-07
 </code></pre></td></tr></table>
 </div>
-</div><p>经过27次V循环，迭代收敛。</p>
+</div><p>设定迭代判据为平均残差（绝对值）小于$1\times 10^{-6}$时收敛，经过27次V循环，迭代收敛。</p>
 <h3 id="分析">分析</h3>
 <p><img
         class="lazyload"
@@ -558,9 +558,17 @@ iter:  27  res: 8.846259248684873e-07
         title="result" /></p>
 <p>可以看到，单纯的高斯赛德尔迭代需要近660步才能迭代到收敛，而采用多重网格后，只需要27个V循环，每个循环由2次细网格上的GS迭代和10次较粗网格上的GS迭代以及最粗网格的TDMA组成，大大减少了计算量。</p>
 <h3 id="参考">参考</h3>
+<ul>
+<li>
 <p>[1] <a href="https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/readings/am63.pdf" target="_blank" rel="noopener noreffer">MIT courseware</a></p>
+</li>
+<li>
 <p>[2] H.K.Versteeg, An introduction to computational fluid dynamics: the finite volume method</p>
-<p>[3]  <a href="https://www.cfd-online.com/Wiki/Multigrid_methods" target="_blank" rel="noopener noreffer">CFD-online Multigrid methods</a></p></div><div class="post-footer" id="post-footer">
+</li>
+<li>
+<p>[3]  <a href="https://www.cfd-online.com/Wiki/Multigrid_methods" target="_blank" rel="noopener noreffer">CFD-online Multigrid methods</a></p>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
