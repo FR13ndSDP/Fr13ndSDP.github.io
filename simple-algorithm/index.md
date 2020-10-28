@@ -7,8 +7,7 @@ SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
 
 #### 1.问题描述
 
-![](/images/simple-algorithm/problem.jpg)
-
+{{< figure src="/images/simple-algorithm/problem.jpg" title="一维简化喷管内流动" >}}
 - 流体密度 $\rho = 1\ kg/m^3$, 不可压缩，无粘流动
 - 喷管长度 $L = 0.2\ m$
 - 喷管左右面积给定 $A_{A} = 0.5\ m^2, A_{E} = 0.1\ m^2$
@@ -219,12 +218,10 @@ print("momentum residual:", max(sp))
 > momentum residual: 8.626240521558692e-06
 
 
-
-![mass flow](/images/simple-algorithm/output_1_1.png)
-
+{{< figure src="/images/simple-algorithm/output_1_1.png" title="质量流量" >}}
 
 
-![pressure](/images/simple-algorithm/output_1_2.png)
+{{< figure src="/images/simple-algorithm/output_1_2.png" title="最大绝对残差" >}}
 
 上面的代码使用一节迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。
 
@@ -241,7 +238,7 @@ $$
 \Psi(r) = \frac{r+|r|}{1+r}
 $$
 
-![TVD](/images/simple-algorithm/tvd.png)
+{{< figure src="/images/simple-algorithm/tvd.png" title="Sweby's diagram" >}}
 
 当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法），需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。
 

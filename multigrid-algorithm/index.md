@@ -45,7 +45,7 @@ $$
 
 ### 算例
 
-![problem](./images/multigrid-method/multigrid.png)
+{{< figure src="/images/multigrid-method/multigrid.png" title="一个简单的导热问题" >}}
 
 一个带内热源的导热问题
 $$
@@ -235,7 +235,7 @@ iter:  27  res: 8.846259248684873e-07
 
 ### 分析
 
-![result](/images/multigrid-method/result.png)
+{{< figure src="/images/multigrid-method/result.png" title="迭代残差" >}}
 
 可以看到，单纯的高斯赛德尔迭代需要近660步才能迭代到收敛，而采用多重网格后，只需要27个V循环，每个循环由2次细网格上的GS迭代和10次较粗网格上的GS迭代以及最粗网格的TDMA组成，大大减少了计算量。
 

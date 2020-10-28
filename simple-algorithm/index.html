@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "FVM, SIMPLE","wordcount":  1694 ,
+            },"genre": "posts","keywords": "FVM, SIMPLE","wordcount":  1715 ,
         "url": "https:\/\/fr13ndsdp.github.io\/simple-algorithm\/","datePublished": "2020-10-22T23:01:19+08:00","dateModified": "2020-10-23T13:48:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -121,18 +121,16 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-10-22>2020-10-22</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1694 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1715 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 4 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用</p>
 <h4 id="1问题描述">1.问题描述</h4>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/simple-algorithm/problem.jpg, /images/simple-algorithm/problem.jpg 1.5x, /images/simple-algorithm/problem.jpg 2x"
-        data-src="/images/simple-algorithm/problem.jpg"
-        alt="/images/simple-algorithm/problem.jpg"
-        title="/images/simple-algorithm/problem.jpg" /></p>
+<figure>
+    <img src="/images/simple-algorithm/problem.jpg"/> <figcaption>
+            <h4>一维简化喷管内流动</h4>
+        </figcaption>
+</figure>
+
 <ul>
 <li>流体密度 $\rho = 1\ kg/m^3$, 不可压缩，无粘流动</li>
 <li>喷管长度 $L = 0.2\ m$</li>
@@ -506,22 +504,18 @@ $$
 <p>mass flow: 0.4441588782980728</p>
 <p>momentum residual: 8.626240521558692e-06</p>
 </blockquote>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/simple-algorithm/output_1_1.png, /images/simple-algorithm/output_1_1.png 1.5x, /images/simple-algorithm/output_1_1.png 2x"
-        data-src="/images/simple-algorithm/output_1_1.png"
-        alt="mass flow"
-        title="mass flow" /></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/simple-algorithm/output_1_2.png, /images/simple-algorithm/output_1_2.png 1.5x, /images/simple-algorithm/output_1_2.png 2x"
-        data-src="/images/simple-algorithm/output_1_2.png"
-        alt="pressure"
-        title="pressure" /></p>
+<figure>
+    <img src="/images/simple-algorithm/output_1_1.png"/> <figcaption>
+            <h4>质量流量</h4>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="/images/simple-algorithm/output_1_2.png"/> <figcaption>
+            <h4>最大绝对残差</h4>
+        </figcaption>
+</figure>
+
 <p>上面的代码使用一节迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。</p>
 <p>不妨试一试使用Van Leer格式，如下
 $$
@@ -533,14 +527,12 @@ $$</p>
 <p>$$
 \Psi(r) = \frac{r+|r|}{1+r}
 $$</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/simple-algorithm/tvd.png, /images/simple-algorithm/tvd.png 1.5x, /images/simple-algorithm/tvd.png 2x"
-        data-src="/images/simple-algorithm/tvd.png"
-        alt="TVD"
-        title="TVD" /></p>
+<figure>
+    <img src="/images/simple-algorithm/tvd.png"/> <figcaption>
+            <h4>Sweby&#39;s diagram</h4>
+        </figcaption>
+</figure>
+
 <p>当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法），需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

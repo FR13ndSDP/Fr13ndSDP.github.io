@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "Multi-grid","wordcount":  2061 ,
+            },"genre": "posts","keywords": "Multi-grid","wordcount":  2074 ,
         "url": "https:\/\/fr13ndsdp.github.io\/multigrid-algorithm\/","datePublished": "2020-10-25T19:41:49+08:00","dateModified": "2020-10-25T19:41:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -124,7 +124,7 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-10-25>2020-10-25</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 2061 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2074 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -184,14 +184,12 @@ $$
 </li>
 </ul>
 <h3 id="算例">算例</h3>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/multigrid-method/multigrid.png, /images/multigrid-method/multigrid.png 1.5x, /images/multigrid-method/multigrid.png 2x"
-        data-src="/images/multigrid-method/multigrid.png"
-        alt="problem"
-        title="problem" /></p>
+<figure>
+    <img src="/images/multigrid-method/multigrid.png"/> <figcaption>
+            <h4>一个简单的导热问题</h4>
+        </figcaption>
+</figure>
+
 <p>一个带内热源的导热问题
 $$
 k\frac{d^2T}{dx^2} + g = 0
@@ -548,14 +546,12 @@ iter:  27  res: 8.846259248684873e-07
 </div>
 </div><p>设定迭代判据为平均残差（绝对值）小于$1\times 10^{-6}$时收敛，经过27次V循环，迭代收敛。</p>
 <h3 id="分析">分析</h3>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/multigrid-method/result.png, /images/multigrid-method/result.png 1.5x, /images/multigrid-method/result.png 2x"
-        data-src="/images/multigrid-method/result.png"
-        alt="result"
-        title="result" /></p>
+<figure>
+    <img src="/images/multigrid-method/result.png"/> <figcaption>
+            <h4>迭代残差</h4>
+        </figcaption>
+</figure>
+
 <p>可以看到，单纯的高斯赛德尔迭代需要近660步才能迭代到收敛，而采用多重网格后，只需要27个V循环，每个循环由2次细网格上的GS迭代和10次较粗网格上的GS迭代以及最粗网格的TDMA组成，大大减少了计算量。</p>
 <h3 id="参考">参考</h3>
 <ul>
