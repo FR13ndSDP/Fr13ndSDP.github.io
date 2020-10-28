@@ -75,31 +75,6 @@ def sol(aw, ap, ae, su):
 
     return phi
 
-def vanLeer(u,n):
-    re = (u[n] - u[n-1])/(u[n+1] - u[n])
-    rw = (u[n-1] - u[n-2])/(u[n] - u[n-1])
-    phie = (re+abs(re))/(1+re)
-    phiw = (rw+abs(rw))/(1+rw)
-    return phie,phiw
-
-def minMod(u,n):
-    re = (u[n] - u[n-1])/(u[n+1] - u[n])
-    rw = (u[n-1] - u[n-2])/(u[n] - u[n-1])
-    if (re >0):
-        phie = min(re,1)
-    else:
-        phie = 0
-    if (rw >0):
-        phiw = min(rw,1)
-    else:
-        phiw = 0  
-    return phie,phiw
-
-def upwind(u,n):
-    phie = 0
-    phiw = 0
-    return phie,phiw
-
 rho = 1  # density
 L = 2   # length
 n = 100  # number of pressure nodals
@@ -108,9 +83,9 @@ dx = L/n
 p0 = 10  # inlet stagnation pressure
 p_exit = 0  # oulet gauge pressure
 mass = []   # mass flow
-residual = []
 sp = [1]    # momentum residual (source of pressure Eq.)
-m = 0.5  # guessed mass flow
+residual = [] # list of residual
+m = 1  # guessed mass flow
 
 # matrix coeff and source term coeff
 apu = np.zeros(nu)
@@ -137,19 +112,16 @@ u = np.zeros(nu)
 for i in range(nu):
     u[i] = m/(rho*Au[i])
 
-p = np.linspace(10, 0, n)
+p = np.linspace(p0, p_exit, n)
 pf = np.zeros(n)  # Pressure correction value
 
 while(max(sp) > 1e-5):
     sp = []
     # velocity update
-    for i in range(2, nu-1):
-        fw = rho*(u[i-1]+u[i])/2*Ap[i]
-        fe = rho*(u[i]+u[i+1])/2*Ap[i+1]
-        phie,phiw = upwind(u,i)
-        awu[i] = fw*(1-0.5*phiw)
-        aeu[i] = -0.5*fe*phie  # upwind scheme
-        apu[i] = awu[i]+aeu[i]+fe-fw  # awu[i]+aeu[i]+ (F_e-F_w)
+    for i in range(1, nu-1):
+        awu[i] = rho*(u[i-1]+u[i])/2*Ap[i]  # F_w
+        aeu[i] = 0  # upwind scheme
+        apu[i] = rho*(u[i]+u[i+1])/2 * Ap[i+1]  # awu[i]+aeu[i]+ (F_e-F_w)
         apu[i] = apu[i]/alpha_u  # velocity relaxation
         suu[i] = Au[i]*(p[i]-p[i+1]) + (1-alpha_u)*apu[i]*u[i]
         d[i] = Au[i]/apu[i]
@@ -161,20 +133,16 @@ while(max(sp) > 1e-5):
         (Au[0]/Ap[0])*u[0]+(1-alpha_u)*apu[0]*u[0]
     d[0] = Au[0]/apu[0]
 
-    awu[1] = rho*(u[0]+u[1])/2*Ap[1]
-    apu[1] = (rho*(u[1]+u[2])/2*Ap[2])/alpha_u
-    suu[1] = Au[1]*(p[1] - p[2]) + (1-alpha_u)*apu[1]*u[1]
-    d[1] = Au[1]/apu[1]
-
     awu[nu-1] = rho*(u[nu-2]+u[nu-1])/2*Ap[nu-1]
-    apu[nu-1] = (rho*u[nu-1]*Au[nu-1]*Au[nu-1]/Ap[n-1])/alpha_u
+    apu[nu-1] = rho*u[nu-1]*Au[nu-1]*Au[nu-1]/Ap[n-1]
+    apu[nu-1] = apu[nu-1]/alpha_u  # velocity relaxation
     suu[nu-1] = Au[nu-1]*(p[nu-1] - p[nu]) + (1-alpha_u)*apu[nu-1]*u[nu-1]
     d[nu-1] = Au[nu-1]/apu[nu-1]
 
     u = sol(awu, apu, aeu, suu)
 
     # pressure update
-    for i in range(1,n-1):
+    for i in range(1, n-1):
         awp[i] = rho*d[i-1]*Au[i-1]
         aep[i] = rho*d[i]*Au[i]
         app[i] = awp[i]+aep[i]
@@ -202,13 +170,14 @@ while(max(sp) > 1e-5):
     mass.append(rho*Au[0]*u[0])
     residual.append(max(sp))
 
+
 plt.figure(1)
 plt.plot(mass)
 plt.title("mass flow")
 plt.figure(2)
+plt.yscale('log')
 plt.plot(residual)
 plt.title("max residual")
-
 print("mass flow:", mass[-1])
 print("momentum residual:", max(sp))
 ```
@@ -223,7 +192,7 @@ print("momentum residual:", max(sp))
 
 {{< figure src="/images/simple-algorithm/output_1_2.png" title="最大绝对残差" >}}
 
-上面的代码使用一节迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。
+上面的代码使用一阶迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。
 
 不妨试一试使用Van Leer格式，如下
 $$
@@ -240,7 +209,11 @@ $$
 
 {{< figure src="/images/simple-algorithm/tvd.png" title="Sweby's diagram" >}}
 
-当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法），需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。
+当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法）。
+
+{{< admonition type=tip title="技巧" open=true >}}
+需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。
+{{< /admonition >}}
 
 ```python
 def vanLeer(u,n):

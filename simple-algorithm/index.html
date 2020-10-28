@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "FVM, SIMPLE","wordcount":  1715 ,
+            },"genre": "posts","keywords": "FVM, SIMPLE","wordcount":  1605 ,
         "url": "https:\/\/fr13ndsdp.github.io\/simple-algorithm\/","datePublished": "2020-10-22T23:01:19+08:00","dateModified": "2020-10-23T13:48:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -121,7 +121,7 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-10-22>2020-10-22</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1715 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1605 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 4 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用</p>
 <h4 id="1问题描述">1.问题描述</h4>
@@ -308,37 +308,6 @@ $$
 </span><span class="lnt">124
 </span><span class="lnt">125
 </span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span><span class="lnt">137
-</span><span class="lnt">138
-</span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
-</span><span class="lnt">143
-</span><span class="lnt">144
-</span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -362,31 +331,6 @@ $$
 
     <span class="k">return</span> <span class="n">phi</span>
 
-<span class="k">def</span> <span class="nf">vanLeer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">re</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-    <span class="n">rw</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">phie</span> <span class="o">=</span> <span class="p">(</span><span class="n">re</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">re</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">re</span><span class="p">)</span>
-    <span class="n">phiw</span> <span class="o">=</span> <span class="p">(</span><span class="n">rw</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">rw</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rw</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">phie</span><span class="p">,</span><span class="n">phiw</span>
-
-<span class="k">def</span> <span class="nf">minMod</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">re</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-    <span class="n">rw</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">re</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
-        <span class="n">phie</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">re</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">phie</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rw</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
-        <span class="n">phiw</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">phiw</span> <span class="o">=</span> <span class="mi">0</span>  
-    <span class="k">return</span> <span class="n">phie</span><span class="p">,</span><span class="n">phiw</span>
-
-<span class="k">def</span> <span class="nf">upwind</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">phie</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">phiw</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">phie</span><span class="p">,</span><span class="n">phiw</span>
-
 <span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># density</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># length</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of pressure nodals</span>
@@ -395,9 +339,9 @@ $$
 <span class="n">p0</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># inlet stagnation pressure</span>
 <span class="n">p_exit</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># oulet gauge pressure</span>
 <span class="n">mass</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># mass flow</span>
-<span class="n">residual</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">sp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>    <span class="c1"># momentum residual (source of pressure Eq.)</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># guessed mass flow</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># list of residual</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># guessed mass flow</span>
 
 <span class="c1"># matrix coeff and source term coeff</span>
 <span class="n">apu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nu</span><span class="p">)</span>
@@ -424,19 +368,16 @@ $$
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nu</span><span class="p">):</span>
     <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">p_exit</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="n">pf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Pressure correction value</span>
 
 <span class="k">while</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">):</span>
     <span class="n">sp</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># velocity update</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">fw</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">fe</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">phie</span><span class="p">,</span><span class="n">phiw</span> <span class="o">=</span> <span class="n">upwind</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">awu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fw</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">phiw</span><span class="p">)</span>
-        <span class="n">aeu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">fe</span><span class="o">*</span><span class="n">phie</span>  <span class="c1"># upwind scheme</span>
-        <span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">awu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">aeu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">fe</span><span class="o">-</span><span class="n">fw</span>  <span class="c1"># awu[i]+aeu[i]+ (F_e-F_w)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">awu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># F_w</span>
+        <span class="n">aeu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># upwind scheme</span>
+        <span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Ap</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># awu[i]+aeu[i]+ (F_e-F_w)</span>
         <span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">alpha_u</span>  <span class="c1"># velocity relaxation</span>
         <span class="n">suu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha_u</span><span class="p">)</span><span class="o">*</span><span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">apu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -448,20 +389,16 @@ $$
         <span class="p">(</span><span class="n">Au</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">Ap</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha_u</span><span class="p">)</span><span class="o">*</span><span class="n">apu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">apu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">awu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">apu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">alpha_u</span>
-    <span class="n">suu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha_u</span><span class="p">)</span><span class="o">*</span><span class="n">apu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">apu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
     <span class="n">awu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">Ap</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">Ap</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">alpha_u</span>
+    <span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">Ap</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">alpha_u</span>  <span class="c1"># velocity relaxation</span>
     <span class="n">suu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="n">nu</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha_u</span><span class="p">)</span><span class="o">*</span><span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">d</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Au</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">apu</span><span class="p">[</span><span class="n">nu</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="n">u</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="n">awu</span><span class="p">,</span> <span class="n">apu</span><span class="p">,</span> <span class="n">aeu</span><span class="p">,</span> <span class="n">suu</span><span class="p">)</span>
 
     <span class="c1"># pressure update</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">awp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">aep</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">app</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">awp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">aep</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -489,13 +426,14 @@ $$
     <span class="n">mass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">Au</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">residual</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sp</span><span class="p">))</span>
 
+
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;mass flow&#34;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;max residual&#34;</span><span class="p">)</span>
-
 <span class="k">print</span><span class="p">(</span><span class="s2">&#34;mass flow:&#34;</span><span class="p">,</span> <span class="n">mass</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&#34;momentum residual:&#34;</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">sp</span><span class="p">))</span>
 </code></pre></td></tr></table>
@@ -516,7 +454,7 @@ $$
         </figcaption>
 </figure>
 
-<p>上面的代码使用一节迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。</p>
+<p>上面的代码使用一阶迎风格式，采用压力修正方程中源项的绝对值的最大值作为判断收敛依据，采用100个压力节点得到收敛解：质量流量$0.444\ kg/s$，并得到了压力、速度的分布。</p>
 <p>不妨试一试使用Van Leer格式，如下
 $$
 \phi_e = \phi_P + \frac{1}{2}\Psi(r)(\phi_E - \phi_P)
@@ -533,7 +471,15 @@ $$</p>
         </figcaption>
 </figure>
 
-<p>当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法），需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。</p>
+<p>当$\Psi(r)$取零时就转化为了一阶迎风。理论上他是二阶精度的，使用下面的方法离散动量方程（忽略我这tedious的写法）。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">需要特别小心边界上的处理方法，采用镜象法计算出$\Psi(r)$。其中同样使用了延迟修正方法，把TVD格式中除去迎风项都放到源项里，就可以用TDMA解方程了。</div>
+        </div>
+    </div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
