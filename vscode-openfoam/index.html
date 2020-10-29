@@ -162,32 +162,24 @@
 <p>使用现代化的编辑器vscode进行OpenFOAM编程的配置，大大提升编程体验。</p>
 <h3 id="说明">说明</h3>
 <ul>
-<li>首先搜索扩展<code>c/c++</code>安装如下的C++扩展：</li>
+<li>
+<p>首先搜索扩展<code>c/c++</code>安装微软的的C++扩展</p>
+</li>
+<li>
+<p>打开工作文件夹，即你的OpenFOAM求解器存放的文件夹，按住<code>shift+ctrl+p</code>开启命令框，输入<code>c/c++:conf</code>后选择如图的第二条命令，生成<code>.vscode/c_cpp_properties.json</code></p>
+</li>
 </ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="https://images.gitee.com/uploads/images/2020/0331/202955_2c084abc_6577728.png, https://images.gitee.com/uploads/images/2020/0331/202955_2c084abc_6577728.png 1.5x, https://images.gitee.com/uploads/images/2020/0331/202955_2c084abc_6577728.png 2x"
-        data-src="https://images.gitee.com/uploads/images/2020/0331/202955_2c084abc_6577728.png"
-        alt="cpp"
-        title="cpp" /></p>
-<ul>
-<li>打开工作文件夹，即你的OpenFOAM求解器存放的文件夹，按住<code>shift+ctrl+p</code>开启命令框，输入<code>c/c++:conf</code>后选择如图的第二条命令，生成<code>.vscode/c_cpp_properties.json</code></li>
-</ul>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203011_4ee99ad6_6577728.png" alt="1" title="1.png" style="zoom:67%;" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step1.png"/> 
+</figure>
+
 <ul>
 <li>打开<code>Make/options</code>，可以看到所有需要包含的头文件，以<code>-I</code>开头</li>
 </ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png, https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png 1.5x, https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png 2x"
-        data-src="https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png"
-        alt="https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png"
-        title="https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step2.png"/> 
+</figure>
+
 <p>值得注意的是，其中的<code>$(LIB_SRC)</code>所指的地址就是OpenFOAM源代码路径。</p>
 <p>如果你不知道这个路径，终端下执行</p>
 <div class="highlight"><div class="chroma">
@@ -216,25 +208,33 @@ pwd
 <ul>
 <li>接着把完整路径放到C++配置文件的<code>includePath</code>中：</li>
 </ul>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203027_f031cbf3_6577728.png" alt="3" title="3.png" style="zoom:67%;" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step3.png"/> 
+</figure>
+
 <p>注意每条路径用<code>&quot; &quot;</code>括起来，行末加<code>,</code>（最后一行路径除外）</p>
 <ul>
 <li>接下来还有一些小工作要做，先<code>wmake</code>求解器，你会看到下面的输出：</li>
 </ul>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203037_0efc8c8c_6577728.png" alt="4" title="4.png" style="zoom:67%;" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step4.png"/> 
+</figure>
+
 <p>第一个参数<code>g++</code>说明<code>wmake</code>使用g++编译器，因此将g++的路径替换<code>compilerPath</code>中的内容，不知道g++路径？终端里<code>which g++</code>得到。后面<code>-std = c++11 -m64 ... -ftemplate-depth-100</code>是<code>compilerArgs</code>，
 大部分是规定了编译过程错误信息输出以及优化信息，其中，<code>-W</code>开头的参数规定了编译过程中错误信息如何输出，对于我们使用编辑器没有作用，<code>-std = c++ 11 -m64 -O3</code>这几个参数则规定了编译使用的C++标准和优化信息，可以保留，而
 以<code>-D</code>参数开头的是一些宏定义，他们有的规定了所使用的精度等级，这些定义十分重要，如果不加会引起类型错误。最后<code>-ftemplate-depth-100</code>规定了实例化搜寻深度，默认值为900，所以如果不加应该也没有问题，但是对性能的影响尚不清楚。
 如果你觉得太麻烦，你可以将他们全都加到<code>compilerArgs</code>里</p>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203042_115e5a24_6577728.png" alt="5" title="5.png" style="zoom:67%;" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step5.png"/> 
+</figure>
+
 <ul>
 <li>最终效果：</li>
 </ul>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203051_8a133d47_6577728.png" alt="6 " title="6.png" style="zoom:67%;" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/step6.png"/> 
+</figure>
+
 <p>自动补全，代码提示、跳转都正常</p>
 <hr>
 <h3 id="note">NOTE</h3>
@@ -244,14 +244,10 @@ src="https://images.gitee.com/uploads/images/2020/0331/203051_8a133d47_6577728.p
 </li>
 <li>
 <p>最近有个叫Volker Weissmann 的哥们在github上发起一个pull request, 介绍了一个叫做<code>ccls</code>的东西，似乎能够解决上面的问题，不过我还没尝试。<a href="https://github.com/OpenFOAM/OpenFOAM-dev/pull/31" target="_blank" rel="noopener noreffer">pull request</a></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/images/vscode-openfoam/mail.png, /images/vscode-openfoam/mail.png 1.5x, /images/vscode-openfoam/mail.png 2x"
-        data-src="/images/vscode-openfoam/mail.png"
-        alt="mail"
-        title="mail" /></p>
+<figure>
+    <img src="/images/vscode-openfoam/mail.png"/> 
+</figure>
+
 </li>
 <li>
 <p>OpenFOAM的<code>.C .H</code>后缀可能使得Vscode识别语言类型错误，可以在<code>.vscode</code>下创建<code>settings.json</code>设置类型绑定，具体方法在网上很容易找到</p>
@@ -262,11 +258,9 @@ src="https://images.gitee.com/uploads/images/2020/0331/203051_8a133d47_6577728.p
 <li>
 <p>如果是wsl用户，可以使用wsl插件在vscode中调用bash，<em>上述操作均在vscode连接Ubuntu后进行</em></p>
 </li>
-</ul>
-<p><img
-src="https://images.gitee.com/uploads/images/2020/0331/203004_6b3a9480_6577728.png" alt="wsl" title="wsl.png"  /></p>
-<ul>
-<li>如果遇到问题请<a href="https://gitee.com/fr13ndsdp/Vscode-OpenFOAM/issues/new" target="_blank" rel="noopener noreffer">点我</a>发起<code>issue</code></li>
+<li>
+<p>如果遇到问题请<a href="https://gitee.com/fr13ndsdp/Vscode-OpenFOAM/issues/new" target="_blank" rel="noopener noreffer">点我</a>发起<code>issue</code></p>
+</li>
 </ul>
 <hr>
 <h3 id="license">LICENSE</h3>

@@ -9,20 +9,15 @@
 <!--more-->
 
 ### 说明
-- 首先搜索扩展`c/c++`安装如下的C++扩展：
-
-![cpp](https://images.gitee.com/uploads/images/2020/0331/202955_2c084abc_6577728.png)
-
-
+- 首先搜索扩展`c/c++`安装微软的的C++扩展
 
 - 打开工作文件夹，即你的OpenFOAM求解器存放的文件夹，按住`shift+ctrl+p`开启命令框，输入`c/c++:conf`后选择如图的第二条命令，生成`.vscode/c_cpp_properties.json`
 
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203011_4ee99ad6_6577728.png" alt="1" title="1.png" style="zoom:67%;" />
+{{< figure src="/images/vscode-openfoam/step1.png" >}}
 
 - 打开`Make/options`，可以看到所有需要包含的头文件，以`-I`开头
 
-![](https://images.gitee.com/uploads/images/2020/0331/203020_30aea035_6577728.png)
+{{< figure src="/images/vscode-openfoam/step2.png" >}}
 
 值得注意的是，其中的`$(LIB_SRC)`所指的地址就是OpenFOAM源代码路径。
 
@@ -43,28 +38,24 @@ pwd
 
 - 接着把完整路径放到C++配置文件的`includePath`中：
 
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203027_f031cbf3_6577728.png" alt="3" title="3.png" style="zoom:67%;" />
+{{< figure src="/images/vscode-openfoam/step3.png" >}}
 
 注意每条路径用`" "`括起来，行末加`,`（最后一行路径除外）
 
 - 接下来还有一些小工作要做，先`wmake`求解器，你会看到下面的输出：
 
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203037_0efc8c8c_6577728.png" alt="4" title="4.png" style="zoom:67%;" />
+{{< figure src="/images/vscode-openfoam/step4.png" >}}
 
 第一个参数`g++`说明`wmake`使用g++编译器，因此将g++的路径替换`compilerPath`中的内容，不知道g++路径？终端里`which g++`得到。后面`-std = c++11 -m64 ... -ftemplate-depth-100`是`compilerArgs`，
 大部分是规定了编译过程错误信息输出以及优化信息，其中，`-W`开头的参数规定了编译过程中错误信息如何输出，对于我们使用编辑器没有作用，`-std = c++ 11 -m64 -O3`这几个参数则规定了编译使用的C++标准和优化信息，可以保留，而
 以`-D`参数开头的是一些宏定义，他们有的规定了所使用的精度等级，这些定义十分重要，如果不加会引起类型错误。最后`-ftemplate-depth-100`规定了实例化搜寻深度，默认值为900，所以如果不加应该也没有问题，但是对性能的影响尚不清楚。
 如果你觉得太麻烦，你可以将他们全都加到`compilerArgs`里
 
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203042_115e5a24_6577728.png" alt="5" title="5.png" style="zoom:67%;" />
+{{< figure src="/images/vscode-openfoam/step5.png" >}}
 
 - 最终效果：
 
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203051_8a133d47_6577728.png" alt="6 " title="6.png" style="zoom:67%;" />
+{{< figure src="/images/vscode-openfoam/step6.png" >}}
 
 自动补全，代码提示、跳转都正常
 
@@ -75,16 +66,13 @@ src="https://images.gitee.com/uploads/images/2020/0331/203051_8a133d47_6577728.p
 
 - 最近有个叫Volker Weissmann 的哥们在github上发起一个pull request, 介绍了一个叫做`ccls`的东西，似乎能够解决上面的问题，不过我还没尝试。[pull request](https://github.com/OpenFOAM/OpenFOAM-dev/pull/31)
 
-  ![mail](/images/vscode-openfoam/mail.png)
+  {{< figure src="/images/vscode-openfoam/mail.png" >}}
 
 - OpenFOAM的`.C .H`后缀可能使得Vscode识别语言类型错误，可以在`.vscode`下创建`settings.json`设置类型绑定，具体方法在网上很容易找到
 
 - 由于C++扩展进行intellisense会占用较大的存储空间，每打开一个工程，就会相应生成一个100Mb左右的预编译文件，但是对于intellisense没有作用。可以定期清理`~/.cache/vscode-cpptools/ipch`下的缓存文件来释放空间，或者在设置中把`intellisense cache size`设为0禁用。
 
 - 如果是wsl用户，可以使用wsl插件在vscode中调用bash，*上述操作均在vscode连接Ubuntu后进行*
-
-<img
-src="https://images.gitee.com/uploads/images/2020/0331/203004_6b3a9480_6577728.png" alt="wsl" title="wsl.png"  />
 
 - 如果遇到问题请[点我][1]发起`issue`
 
