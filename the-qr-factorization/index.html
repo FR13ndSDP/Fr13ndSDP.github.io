@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "QR分解","wordcount":  1465 ,
+            },"genre": "posts","keywords": "QR分解","wordcount":  1432 ,
         "url": "https:\/\/fr13ndsdp.github.io\/the-qr-factorization\/","datePublished": "2020-10-29T20:22:57+08:00","dateModified": "2020-10-31T20:22:57+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -124,7 +124,7 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-10-29>2020-10-29</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1465 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1432 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -138,7 +138,19 @@
       <ul>
         <li><a href="#1-gram-schmidt正交化方法">1. Gram-Schmidt正交化方法</a></li>
         <li><a href="#2-householder变换">2. Householder变换</a></li>
-        <li><a href="#稳定性分析">稳定性分析</a></li>
+        <li><a href="#稳定性分析">稳定性分析</a>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#heading"></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -196,9 +208,10 @@ $$
 \boldsymbol{\beta_1 = v_1}\\ \boldsymbol{\beta_2=v_2-\langle v_2,\eta_1\rangle \eta_1}\\ \vdots\\ \boldsymbol{\beta_n=v_n-\sum_{i=1}^{n-1}\langle v_n, \eta_i\rangle \eta_i}
 $$</p>
 <p>其中的$\boldsymbol{\eta_n = \frac{\beta_n}{||\beta_n||}}$即标准正交基。那么有
-$$
-\mathbf{A} = \boldsymbol{[v_1,&hellip;,v_n] = [\eta_1,&hellip;,\eta_2] \begin{bmatrix} ||\beta_1||&amp; \frac{\langle v_2,\beta_1\rangle}{||\beta_1||}&amp; &hellip;&amp;\frac{\langle v_n,\beta_1\rangle}{||\beta_1||}\\ 0 &amp; ||\beta_2||&amp; &hellip; &amp; \frac{\langle v_n,\beta_2\rangle}{||\beta_2||}\\ \vdots&amp; \vdots&amp; &hellip; &amp; \vdots\\ 0 &amp; 0 &amp; &hellip; &amp; ||\beta_n|| \end{bmatrix}}
-$$
+<figure>
+    <img src="/images/The-QR-Factorization/matrix.png"/> 
+</figure>
+
 显然，$\boldsymbol{\eta_i}$组成了正交矩阵，又由$\boldsymbol{||\beta_i||}\neq 0$，$\mathbf{R}$是一个主对角元非零的上三角矩阵。</p>
 <h3 id="2-householder变换">2. Householder变换</h3>
 <blockquote>
@@ -206,6 +219,7 @@ $$
 </blockquote>
 <h3 id="稳定性分析">稳定性分析</h3>
 <hr>
+<h6 id="heading"></h6>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>

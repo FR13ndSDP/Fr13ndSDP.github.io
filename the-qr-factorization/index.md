@@ -66,9 +66,7 @@ $$
 $$
 
 其中的$\boldsymbol{\eta_n = \frac{\beta_n}{||\beta_n||}}$即标准正交基。那么有
-$$
-\mathbf{A} = \boldsymbol{[v_1,...,v_n] = [\eta_1,...,\eta_2] \begin{bmatrix} ||\beta_1||& \frac{\langle v_2,\beta_1\rangle}{||\beta_1||}& ...&\frac{\langle v_n,\beta_1\rangle}{||\beta_1||}\\\\ 0 & ||\beta_2||& ... & \frac{\langle v_n,\beta_2\rangle}{||\beta_2||}\\\\ \vdots& \vdots& ... & \vdots\\\\ 0 & 0 & ... & ||\beta_n|| \end{bmatrix}}
-$$
+{{< figure src="/images/The-QR-Factorization/matrix.png">}}
 显然，$\boldsymbol{\eta_i}$组成了正交矩阵，又由$\boldsymbol{||\beta_i||}\neq 0$，$\mathbf{R}$是一个主对角元非零的上三角矩阵。
 
 ### 2. Householder变换
@@ -86,4 +84,4 @@ $$
 [^1]: 在同位网格的界面采用特殊的速度插值来避免棋盘型压力分布。特征是引入一个三阶的压力梯度项来提供阻尼（人工扩散）抑制压力震荡。
 [^2]: $\kappa(\mathbf{A}) = \frac{\sigma_{max}(\mathbf{A})}{\sigma_{min}(\mathbf{A})}$，也就是矩阵的极大奇异值和极小奇异值之比，一个问题的条件数是该数量在数值计算中的容易程度的衡量，也就是该问题的适定性。一个低条件数的问题称为良置的，而高条件数的问题称为病态（或者说非良置）的。[维基百科](https://zh.wikipedia.org/wiki/%E6%9D%A1%E4%BB%B6%E6%95%B0)
 
-
+###### 
