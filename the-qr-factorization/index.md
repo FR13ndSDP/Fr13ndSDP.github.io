@@ -102,7 +102,7 @@ $$
 $$
 注意到$\boldsymbol{H_n}$比$\boldsymbol{H_{n-1}}$维度小，可令
 $$
-\boldsymbol{H_n} = \begin{pmatrix}\boldsymbol{I_{k}}& 0\\\\ 0& \mathop{H_n}\limits^{\sim} \end{pmatrix}
+\boldsymbol{H_n} = \begin{pmatrix}\boldsymbol{I_{k}}& 0\\\\ 0& {\mathop{H}\limits^\sim}_n \end{pmatrix}
 $$
 其中${\mathop{H}\limits^\sim}_n$是真正对余子式起变换作用的。
 
