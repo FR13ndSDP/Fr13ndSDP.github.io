@@ -5,26 +5,26 @@
         <description>CFD | 分类 | Depei Song&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
                 <title>The QR Factorization</title>
-                <link>https://fr13ndsdp.github.io/the-qr-factorization/</link>
+                <link>https://fr13ndsdp.github.io/2020/the-qr-factorization/</link>
                 <pubDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/the-qr-factorization/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/the-qr-factorization/</guid>
                 <description>复习一下线性代数
 </description>
             </item><item>
                 <title>Multigrid Method</title>
-                <link>https://fr13ndsdp.github.io/multigrid-algorithm/</link>
+                <link>https://fr13ndsdp.github.io/2020/multigrid-algorithm/</link>
                 <pubDate>Sun, 25 Oct 2020 19:41:49 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/multigrid-algorithm/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/multigrid-algorithm/</guid>
                 <description>多重网格简单示例
 </description>
             </item><item>
                 <title>Simple algorithm</title>
-                <link>https://fr13ndsdp.github.io/simple-algorithm/</link>
+                <link>https://fr13ndsdp.github.io/2020/simple-algorithm/</link>
                 <pubDate>Thu, 22 Oct 2020 23:01:19 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/simple-algorithm/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/simple-algorithm/</guid>
                 <description>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
 </description>
             </item></channel>

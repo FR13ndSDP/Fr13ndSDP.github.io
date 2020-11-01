@@ -5,73 +5,73 @@
         <description>所有文章 | Depei Song&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
                 <title>The QR Factorization</title>
-                <link>https://fr13ndsdp.github.io/the-qr-factorization/</link>
+                <link>https://fr13ndsdp.github.io/2020/the-qr-factorization/</link>
                 <pubDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/the-qr-factorization/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/the-qr-factorization/</guid>
                 <description>复习一下线性代数
 </description>
             </item><item>
                 <title>Happy FOAMing on VScode</title>
-                <link>https://fr13ndsdp.github.io/vscode-openfoam/</link>
+                <link>https://fr13ndsdp.github.io/2020/vscode-openfoam/</link>
                 <pubDate>Thu, 29 Oct 2020 12:38:19 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/vscode-openfoam/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/vscode-openfoam/</guid>
                 <description>使用现代化的编辑器vscode进行OpenFOAM编程的配置，大大提升编程体验。
 </description>
             </item><item>
                 <title>Multigrid Method</title>
-                <link>https://fr13ndsdp.github.io/multigrid-algorithm/</link>
+                <link>https://fr13ndsdp.github.io/2020/multigrid-algorithm/</link>
                 <pubDate>Sun, 25 Oct 2020 19:41:49 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/multigrid-algorithm/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/multigrid-algorithm/</guid>
                 <description>多重网格简单示例
 </description>
             </item><item>
                 <title>Simple algorithm</title>
-                <link>https://fr13ndsdp.github.io/simple-algorithm/</link>
+                <link>https://fr13ndsdp.github.io/2020/simple-algorithm/</link>
                 <pubDate>Thu, 22 Oct 2020 23:01:19 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/simple-algorithm/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/simple-algorithm/</guid>
                 <description>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
 </description>
             </item><item>
                 <title>#739 每日温度</title>
-                <link>https://fr13ndsdp.github.io/739-daily-temperatures/</link>
+                <link>https://fr13ndsdp.github.io/2020/739-daily-temperatures/</link>
                 <pubDate>Tue, 07 Jul 2020 10:29:37 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/739-daily-temperatures/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/739-daily-temperatures/</guid>
                 <description>单调栈解法
 </description>
             </item><item>
                 <title>#752 Open the Lock</title>
-                <link>https://fr13ndsdp.github.io/752-open-the-lock/</link>
+                <link>https://fr13ndsdp.github.io/2020/752-open-the-lock/</link>
                 <pubDate>Thu, 02 Jul 2020 01:06:40 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/752-open-the-lock/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/752-open-the-lock/</guid>
                 <description>题目 你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： &amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;, &amp;lsquo;2&amp;rsquo;, &amp;lsquo;3&amp;rsquo;, &amp;lsquo;4&amp;rsquo;, &amp;lsquo;5&amp;rsquo;, &amp;lsquo;6&amp;rsquo;, &amp;lsquo;7&amp;rsquo;, &amp;lsquo;8&amp;rsquo;, &amp;lsquo;9&amp;rsquo; 。每个拨轮可以自由旋转：例如把 &amp;lsquo;9&amp;rsquo; 变为 &amp;lsquo;0&amp;rs</description>
             </item><item>
                 <title>DHT11温湿度传感器——51单片机</title>
-                <link>https://fr13ndsdp.github.io/dht11/</link>
+                <link>https://fr13ndsdp.github.io/2020/dht11/</link>
                 <pubDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/dht11/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/dht11/</guid>
                 <description>DHT11温湿度传感器的使用——C51代码
 </description>
             </item><item>
                 <title>#200 岛屿数量</title>
-                <link>https://fr13ndsdp.github.io/200-number-of-islands/</link>
+                <link>https://fr13ndsdp.github.io/2020/200-number-of-islands/</link>
                 <pubDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/200-number-of-islands/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/200-number-of-islands/</guid>
                 <description>最佳解法：广度优先搜素
 </description>
             </item><item>
                 <title>HUGO搭建博客</title>
-                <link>https://fr13ndsdp.github.io/hugo-go/</link>
+                <link>https://fr13ndsdp.github.io/2020/hugo-go/</link>
                 <pubDate>Wed, 24 Jun 2020 21:50:27 &#43;0800</pubDate>
                 <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/hugo-go/</guid>
+                <guid>https://fr13ndsdp.github.io/2020/hugo-go/</guid>
                 <description>使用HUGO&#43;Github Pages搭建个人博客
 </description>
             </item></channel>
