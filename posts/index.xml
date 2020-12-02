@@ -3,7 +3,15 @@
         <title>所有文章 | Depei Song&#39;s Blog</title>
         <link>https://fr13ndsdp.github.io/posts/</link>
         <description>所有文章 | Depei Song&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 08 Nov 2020 15:47:54 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+                <title>Adjoint Optimization</title>
+                <link>https://fr13ndsdp.github.io/2020/adjoint-optimization/</link>
+                <pubDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2020/adjoint-optimization/</guid>
+                <description>伴随优化基本方程的推导以及OpenFOAM中的实现
+</description>
+            </item><item>
                 <title>Optimize Code</title>
                 <link>https://fr13ndsdp.github.io/2020/optimize-code/</link>
                 <pubDate>Sun, 08 Nov 2020 15:47:54 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
                 <author>Fr13ndSDP</author>
                 <guid>https://fr13ndsdp.github.io/2020/200-number-of-islands/</guid>
                 <description>最佳解法：广度优先搜素
-</description>
-            </item><item>
-                <title>HUGO搭建博客</title>
-                <link>https://fr13ndsdp.github.io/2020/hugo-go/</link>
-                <pubDate>Wed, 24 Jun 2020 21:50:27 &#43;0800</pubDate>
-                <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/2020/hugo-go/</guid>
-                <description>使用HUGO&#43;Github Pages搭建个人博客
 </description>
             </item></channel>
 </rss>

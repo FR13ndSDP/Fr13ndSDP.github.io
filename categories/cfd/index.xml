@@ -3,7 +3,15 @@
         <title>CFD | 分类 | Depei Song&#39;s Blog</title>
         <link>https://fr13ndsdp.github.io/categories/cfd/</link>
         <description>CFD | 分类 | Depei Song&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
+                <title>Adjoint Optimization</title>
+                <link>https://fr13ndsdp.github.io/2020/adjoint-optimization/</link>
+                <pubDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2020/adjoint-optimization/</guid>
+                <description>伴随优化基本方程的推导以及OpenFOAM中的实现
+</description>
+            </item><item>
                 <title>The QR Factorization</title>
                 <link>https://fr13ndsdp.github.io/2020/the-qr-factorization/</link>
                 <pubDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</pubDate>
