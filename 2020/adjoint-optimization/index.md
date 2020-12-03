@@ -75,17 +75,17 @@ $$
 
 因为
 $$
-dJ = dL = L_{\alpha}d{\alpha}+ L_{\mathbf{v}}d{\mathbf{v}}+L_{p}dp
+dL = L_{\alpha}d{\alpha}+ L_{\mathbf{v}}d{\mathbf{v}}+L_{p}dp
 $$
 注意这里没有将粘度作为微分变量，是一种近似的做法，被称为“冻结湍流”。
 
 由于 $(\mathbf{u},q)$可以自由选取，取 适当的值使得 $L_{\mathbf{v}}d{\mathbf{v}}+L_pdp = 0$ 成立，便得到
 $$
-\frac{\partial J}{\partial \alpha} = L_{\alpha} = J_{\alpha} + \int_{\Omega}\mathbf{u}\cdot \mathbf{v}d\Omega
+L_{\alpha} = J_{\alpha} + \int_{\Omega}\mathbf{u}\cdot \mathbf{v}d\Omega
 $$
 当考虑网格中的目标函数关于 $\alpha$的梯度，可以得到
 $$
-\frac{\partial J}{\partial \alpha_i} = L_{\alpha_i} = J_{\alpha_i} + \mathbf{u_i}\cdot \mathbf{v_i}V_i
+\frac{\partial L}{\partial \alpha_i} = J_{\alpha_i} + \mathbf{u_i}\cdot \mathbf{v_i}V_i
 $$
 其中 $V_i$ 为网格体积。
 
@@ -124,14 +124,13 @@ $$
 \int_{\Gamma} \mathrm{d} \Gamma\left(\mathbf{n}(\mathbf{u} \cdot \mathbf{v})+\mathbf{u}(\mathbf{v} \cdot \mathbf{n})+2 v \mathbf{n} \cdot \mathbf{D}(\mathbf{u})-q \mathbf{n}+\frac{\partial J_{\Gamma}}{\partial \mathbf{v}}\right) \cdot \delta \mathbf{v}=0\\\\ \int_{\Gamma} \mathrm{d} \Gamma\left(\mathbf{u} \cdot \mathbf{n}+\frac{\partial J_{\Gamma}}{\partial p}\right) \delta p + \int_{\Gamma} \mathrm{d} \Gamma 2 v \mathbf{n} \cdot \mathbf{D}(\delta \mathbf{v}) \cdot \mathbf{u}=0
 $$
 
-
 1） 在入口边界以及壁面处，速度值为给定值或者0，因此 $\delta \mathbf{v} = 0$，因此部分积分可以视为0，为了避免无解，显然应该选取第一种边界条件的定义。
 
 因此
 $$
 \int_{\Gamma} \mathrm{d} \Gamma 2 v \mathbf{n} \cdot \mathbf{D}(\delta \mathbf{v}) \cdot \mathbf{u}=0 \\\\ u_n = -\frac{\partial J_{\Gamma}}{\partial p}
 $$
-其中 $u_n = \mathbf{u\cdot n}$ 为伴随速度在边界法向的分量。现在需要定义$u_t$ 在边界处的取值，这里需要用到一些近似，具体推导参看参考文献[^1]，这里直接给出入口及壁面处应该满足的边界条件：
+其中 $u_n = \mathbf{u\cdot n}$ 为伴随速度在边界法向的分量。现在需要定义$u_t$ 在边界处的取值，这里需要用到一些近似，具体推导参看参考文献1，这里直接给出入口及壁面处应该满足的边界条件：
 $$
 u_t = 0\\\\ u_n = -\frac{\partial J_{\Gamma}}{\partial p}\\\\ \mathbf{n}\cdot \nabla q = 0
 $$
@@ -150,7 +149,7 @@ $$
 
 $J_{\Omega} = 0, J_{\Gamma} = -(p+\frac{1}{2}v^2)\mathbf{v\cdot n}$，因此
 $$
-\frac{\partial J_{\Gamma}}{\partial p} = -\mathbf{v\cdot n},\quad \frac{\partial J_{\Gamma}}{\partial \mathbf{v}} = \frac{\partial(-p\mathbf{v\cdot n}-\frac{1}{2}\mathbf{(v\cdot v)v\cdot n)}}{\partial\mathbf{v}} = -p\mathbf{n}-(\mathbf{v\cdot n})\cdot \mathbf{v}
+\frac{\partial J_{\Gamma}}{\partial p} = -\mathbf{v\cdot n},\quad \frac{\partial J_{\Gamma}}{\partial \mathbf{v}} = \frac{\partial(-p\mathbf{v\cdot n}-\frac{1}{2}\mathbf{(v\cdot v)v\cdot n)}}{\partial\mathbf{v}} = -p\mathbf{n}-(\mathbf{v\cdot n})\cdot \mathbf{v}-\frac{1}{2}v^2\mathbf{n}
 $$
 
 
@@ -164,14 +163,222 @@ u_t = 0\\\\ u_n = v_n\\\\ \mathbf{n}\cdot \nabla q = 0
 $$
 出口边界条件：
 $$
-\mathbf{n}(\mathbf{u} \cdot \mathbf{v})+\mathbf{u}(\mathbf{v} \cdot \mathbf{n})+v(\mathbf{n} \cdot \nabla) \mathbf{u}-q \mathbf{n}-p\mathbf{n}-(\mathbf{v\cdot n})\cdot \mathbf{v}=0
+\mathbf{n}(\mathbf{u} \cdot \mathbf{v})+\mathbf{u}(\mathbf{v} \cdot \mathbf{n})+v(\mathbf{n} \cdot \nabla) \mathbf{u}-q \mathbf{n}-p\mathbf{n}-(\mathbf{v\cdot n})\cdot \mathbf{v}-\frac{1}{2}v^2\mathbf{n}=0
 $$
 
-## 4. OpenFOAM中的实现
 
-## 参考资料
 
-[^1]:C. Othmer, A continuous adjoint formulation for the computation of topological and surface sensitivities of ducted flows
-[^2]:Andrew M. Bradley, PDE-constrained optimization and the adjoint method
-[^3]:Topology Optimisation of Fluids Through the Continuous Adjoint Approach in OpenFOAM
-[^4]:Ulf Nilsson, Description of adjointShapeOptimizationFoam and how to implement new objective functions
+## 4. *OpenFOAM* 中的实现
+
+首先给出算法流程图：
+
+{{< figure src="/images/Adjoint-Method/procedure.png" title="What's next">}}
+
+### 4.1 原始方程和伴随方程的求解
+
+首先，使用SIMPLE算法求解原始变量
+
+```cpp
+// Momentum predictor
+            // @turbulence->divDevSigma: 湍流源项，应变率张量散度
+            fvVectorMatrix UEqn
+            (
+                fvm::div(phi, U)
+              + turbulence->divDevSigma(U)
+              + fvm::Sp(alpha, U)
+            );
+			UEqn.relax();
+			solve(UEqn == -fvc::grad(p));
+// omit-----------------------------------------------------
+//压力泊松方程
+			volScalarField rAU(1.0/UEqn.A());
+            volVectorField HbyA(constrainHbyA(rAU*UEqn.H(), U, p));
+            surfaceScalarField phiHbyA("phiHbyA", fvc::flux(HbyA));
+			fvScalarMatrix pEqn
+            (
+            	fvm::laplacian(rAU, p) == fvc::div(phiHbyA)
+            );
+
+            pEqn.setReference(pRefCell, pRefValue);
+            pEqn.solve();
+// Explicitly relax pressure for momentum corrector
+            p.relax();
+// Momentum corrector
+            U = HbyA - rAU*fvc::grad(p);
+```
+
+也就是求解
+$$
+\nabla\cdot(\mathbf{vv}) + \nabla p - \nabla\cdot (2\nu D(\mathbf{v}))+\alpha \mathbf{v} = 0\\\\ \nabla \cdot \mathbf{v} = 0
+$$
+
+
+然后求解伴随方程（与原始变量方程非常相似）
+
+```cpp
+// Adjoint Momentum predictor
+            volVectorField adjointTransposeConvection((fvc::grad(Ua) & U));
+            zeroCells(adjointTransposeConvection, inletCells);
+            fvVectorMatrix UaEqn
+            (
+                fvm::div(-phi, Ua)
+              - adjointTransposeConvection
+              + turbulence->divDevSigma(Ua)
+              + fvm::Sp(alpha, Ua)
+            );
+            UaEqn.relax()
+            solve(UaEqn == -fvc::grad(pa));
+```
+
+$$
+-\nabla (\mathbf{vu})-\nabla \mathbf{u}\cdot \mathbf{v} = -\nabla{q}+\nabla \cdot (2\nu D(\mathbf{u}))-\alpha \mathbf{u}\\\\ \nabla \cdot \mathbf{u} = 0
+$$
+
+注意到在这里，单独对 $\nabla \mathbf{u\cdot v}$ 在入口边界处置为0，并且处理为显式的源项。我认为这样处理是出于问题适定性的需要，正如前文处理入口边界将伴随压力设置为零梯度一样，将这项消去使得伴随方程和原始方程在入口边界完全一致。
+
+### 4.2 边界条件的处理
+
+对于入口边界以及壁面，满足以下的边界条件
+$$
+u_t = 0\\\\ u_n = v_n\\\\ \mathbf{n}\cdot \nabla q = 0
+$$
+即对于速度，壁面使用无滑移条件，入口使用固定值并与原始变量保持一致；在入口和壁面处压力施加零梯度条件。
+
+对于出口边界，则比较复杂。前面推导的边界条件
+$$
+\mathbf{n}(\mathbf{u} \cdot \mathbf{v})+\mathbf{u}(\mathbf{v} \cdot \mathbf{n})+v(\mathbf{n} \cdot \nabla) \mathbf{u}-q \mathbf{n}-p\mathbf{n}-(\mathbf{v\cdot n})\cdot \mathbf{v}-\frac{1}{2}v^2\mathbf{n}=0
+$$
+注意原始变量取为零压力，零速度梯度，将其按照法向和切向分解，得到
+$$
+q = \mathbf{u\cdot v}+u_nv_n+\nu(\mathbf{n}\cdot \nabla)u_n-\frac{1}{2}v^2-v_n^2\\\\ 0 = v_n(\mathbf{u_t-v_t})+\nu(\mathbf{n}\cdot \nabla)\mathbf{u_t}
+$$
+分别代表伴随压力和伴随速度满足的边界条件。在计算法向梯度时，使用近似
+$$
+\nu(\mathbf{n\cdot \nabla})u_n = \nu\frac{u_n - u_{n,neighbor}}{\Delta}\\\\ \nu(\mathbf{n\cdot \nabla})\mathbf{u_t} = \nu\frac{\mathbf{u_t - u_{t,neighbor}}}{\Delta}
+$$
+因此出口处的压力边界表示为
+
+```cpp
+const fvsPatchField<scalar>& phip =
+	patch().lookupPatchField<surfaceScalarField, scalar>("phi"); 
+const fvsPatchField<scalar>& phiap =
+	patch().lookupPatchField<surfaceScalarField, scalar>("phia"); 
+const fvPatchField<vector>& Up =
+	patch().lookupPatchField<volVectorField, vector>("U");
+const fvPatchField<vector>& Uap =
+	patch().lookupPatchField<volVectorField, vector>("Ua");
+
+const incompressible::RASModel& rasModel = 
+	db().lookupObject<incompressible::RASModel>("momentumTransport");
+scalarField nueff = rasModel.nuEff()().boundaryField()[patch().index()];
+const scalarField& deltainv = patch().deltaCoeffs(); // m^-1
+operator==(phip*phiap/sqr(patch().magSf()) + 
+	(Uap&Up) + 
+	nueff*deltainv*(phiap/patch().magSf() - 
+	(Uap.patchInternalField()&patch().nf())) - 
+	0.5*sqr(mag(Up)) - 
+	magSqr(Up&patch().Sf()/patch().magSf()));
+
+fixedValueFvPatchScalarField::updateCoeffs();
+```
+
+速度边界表示为
+
+```cpp
+const fvsPatchField<scalar>& phiap =
+	patch().lookupPatchField<surfaceScalarField, scalar>("phia");
+const fvsPatchField<scalar>& phip =
+	patch().lookupPatchField<surfaceScalarField, scalar>("phi");
+const fvPatchField<vector>& Up =
+	patch().lookupPatchField<volVectorField, vector>("U");
+const fvPatchField<vector>& Uap =
+	patch().lookupPatchField<volVectorField, vector>("Ua");
+
+const incompressible::RASModel& rasModel = 
+    db().lookupObject<incompressible::RASModel>("momentumTransport");
+const scalarField deltainv = patch().deltaCoeffs();
+scalarField nueff = rasModel.nuEff()().boundaryField()[patch().index()];
+scalarField Un(mag(patch().nf() & Up));
+vectorField Ut(Up - phip*patch().nf()/patch().magSf());
+vectorField Uaneigh(Uap.patchInternalField());
+vectorField Uaneigh_n((Uaneigh&patch().nf())*patch().nf());
+vectorField Uaneigh_t(Uaneigh - Uaneigh_n);
+// Ut = (V-Vn)/Vn
+vectorField Uap_t((Un*Ut + nueff*deltainv*Uaneigh_t)/(Un + deltainv*nueff));
+vectorField Uap_n(phiap*patch().nf()/patch().magSf());
+// U = Un + Ut
+// Un = phi*\vec{A}/(A^2)
+vectorField::operator=(Uap_t + Uap_n);
+
+fixedValueFvPatchVectorField::updateCoeffs();
+```
+
+### 4.3 梯度下降法 （Deepest descent method）
+
+完成伴随方程计算后，需要更新孔隙率，如前文推导
+$$
+\frac{\partial L}{\partial \alpha_i} =\mathbf{u_i\cdot v_i V_i}
+$$
+按照梯度下降的方向寻找目标函数极值，定义步长为 $\lambda$ 。则
+$$
+\alpha_{n+1} = \alpha_{n} - \mathbf{u_i\cdot v_i}V_i\lambda
+$$
+在 *OpenFOAM* 的实现中，我们需要注意给 $\alpha$ 施加限制 $\alpha < \alpha_{max}$，并施加松弛因子保证稳定性，因此给出以下代码
+
+```cpp
+// @mesh.fielfRelaxationFactor : fvSolution定义的松弛因子
+        alpha +=
+            mesh.fieldRelaxationFactor("alpha")
+           *(min(max(alpha - lambda*(Ua & U), zeroAlpha), alphaMax) - alpha);
+```
+
+### 4.4 算例
+
+测试算例为 *OpenFOAM* 自带算例`pitzDaily`，管道内流动问题，使用 $k-\epsilon$ 湍流模型，采用的物性参数，湍流模型参数以及梯度下降算法参数如下：
+
+| 粘度                           | 入口湍动能            | 入口湍流耗散率             | 梯度下降步长                   | $\alpha_{max}$ |
+| ------------------------------ | --------------------- | -------------------------- | ------------------------------ | -------------- |
+| $\nu = 1\times 10^{-5}\ m^2/s$ | $k = 0.375 \ m^2/s^2$ | $\epsilon=14.855\ m^2/s^3$ | $\lambda =1\times 10^5\ s/m^2$ | $200$          |
+
+
+边界条件和使用的网格如下图所示，壁面为无滑移条件。
+
+| 变量         | Inlet             | Outlet             |
+| ------------ | ----------------- | ------------------ |
+| $\mathbf{v}$ | 固定值 $10\  m/s$ | 零梯度             |
+| $\mathbf{u}$ | 固定值 $10\ m/s$  | 伴随速度条件       |
+| $p$          | 零梯度            | 固定值 $0\ \rm pa$ |
+| $q$          | 零梯度            | 伴随压力条件       |
+
+
+
+{{< figure src="/images/Adjoint-Method/pitzdaily.png" title="Mesh">}}
+
+N-S方程和伴随方程的求解采用SIMPLE算法 ，$\alpha$ 松弛因子设为0.1。每步计算收敛条件为相对残差小于0.1或绝对残差小于1e-8。为保证稳定性，N-S方程对流项使用二阶迎风格式，伴随方程及湍流模型有关项使用一阶迎风格式。最终得到 $\alpha$ 的分布情况：
+
+{{< figure src="/images/Adjoint-Method/alpha.png" title="$\alpha$">}}
+
+可以看到，$\alpha$ 值大的地方也就是被惩罚的区域，将这部分挖掉后流动将更加自然，台阶处的涡消失。
+
+{{< figure src="/images/Adjoint-Method/velocity.png" title="$\mathbf{v}$">}}
+
+{{< figure src="/images/Adjoint-Method/pressure.png" title="$p$">}}
+
+可以计算出损失函数 $J$ 的变化情况，与不进行伴随优化的解对比，实现了流动能量损失的减小。
+
+{{< figure src="/images/Adjoint-Method/dissipation.png" title="Dissipation Rate">}}
+
+
+
+## 5. 总结
+
+伴随优化方法可以扩展到流动、传热、结构耦合问题的求解，也可以与基于梯度的其他优化算法相结合；不仅可以进行形状优化，也可以扩展到其他多参数，目前正得到越来越多的应用。
+
+
+
+#### 参考资料
+
+- [1] C. Othmer, A continuous adjoint formulation for the computation of topological and surface sensitivities of ducted flows
+- [2] Andrew M. Bradley, PDE-constrained optimization and the adjoint method
+- [3] Luis Fernando Garcia Rodriguez, Topology Optimisation of Fluids Through the Continuous Adjoint Approach in OpenFOAM
+- [4] Ulf Nilsson, Description of adjointShapeOptimizationFoam and how to implement new objective functions
