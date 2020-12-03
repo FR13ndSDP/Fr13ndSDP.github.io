@@ -360,7 +360,7 @@ N-S方程和伴随方程的求解采用SIMPLE算法 ，$\alpha$ 松弛因子设�
 
 可以看到，$\alpha$ 值大的地方也就是被惩罚的区域，将这部分挖掉后流动将更加自然，台阶处的涡消失。
 
-{{< figure src="/images/Adjoint-Method/velocity.png" title="$\mathbf{v}$">}}
+{{< figure src="/images/Adjoint-Method/velocity.png" title="$v$">}}
 
 {{< figure src="/images/Adjoint-Method/pressure.png" title="$p$">}}
 
