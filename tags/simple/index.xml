@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>SIMPLE | 标签 | Depei Song&#39;s Blog</title>
+        <title>SIMPLE | 标签 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/tags/simple/</link>
-        <description>SIMPLE | 标签 | Depei Song&#39;s Blog</description>
+        <description>SIMPLE | 标签 | cat /var/log/life</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 22 Oct 2020 23:01:19 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/tags/simple/" rel="self" type="application/rss+xml" /><item>
                 <title>Simple algorithm</title>
                 <link>https://fr13ndsdp.github.io/2020/simple-algorithm/</link>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>QR分解 | 标签 | Depei Song&#39;s Blog</title>
+        <title>QR分解 | 标签 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/tags/qr%E5%88%86%E8%A7%A3/</link>
-        <description>QR分解 | 标签 | Depei Song&#39;s Blog</description>
+        <description>QR分解 | 标签 | cat /var/log/life</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 29 Oct 2020 20:22:57 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/tags/qr%E5%88%86%E8%A7%A3/" rel="self" type="application/rss+xml" /><item>
                 <title>The QR Factorization</title>
                 <link>https://fr13ndsdp.github.io/2020/the-qr-factorization/</link>

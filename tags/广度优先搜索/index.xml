@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>广度优先搜索 | 标签 | Depei Song&#39;s Blog</title>
+        <title>广度优先搜索 | 标签 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</link>
-        <description>广度优先搜索 | 标签 | Depei Song&#39;s Blog</description>
+        <description>广度优先搜索 | 标签 | cat /var/log/life</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 02 Jul 2020 01:06:40 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="self" type="application/rss+xml" /><item>
                 <title>#752 Open the Lock</title>
                 <link>https://fr13ndsdp.github.io/2020/752-open-the-lock/</link>
