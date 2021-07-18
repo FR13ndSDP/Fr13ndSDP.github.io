@@ -54,7 +54,7 @@ $$
 
 而该不等式左侧难以计算，因此在近似计算时由该不等式引起的误差表示为
 $$
-\tau^s_{ij} = -\rho(\overline{u_iu_j}-\bar{u}_{i}\bar{u}_{j}
+\tau^s_{ij} = -\rho(\overline{u_iu_j}-\bar{u}_{i}\bar{u}_{j})
 $$
 因此LES计算中的动量方程为
 $$
