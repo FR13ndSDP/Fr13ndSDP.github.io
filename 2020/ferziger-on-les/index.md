@@ -49,7 +49,7 @@ $$
 
 由于很重要的一点：
 $$
-\overline{u_iu_j}=\bar{u}_i\bar{u}_j
+\overline{u_iu_j}\neq \bar{u}_i\bar{u}_j
 $$
 
 而该不等式左侧难以计算，因此在近似计算时由该不等式引起的误差表示为
