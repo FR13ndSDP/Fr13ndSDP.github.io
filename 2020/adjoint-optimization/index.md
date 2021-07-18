@@ -73,23 +73,23 @@ min \quad L = J+\int_\Omega(\mathbf{u},q)Rd\Omega\\\\ = J+ \int_{\Omega}qR^pd\Om
 $$
 其中$(\mathbf{u},q)$为拉格朗日乘子，称其为伴随速度和伴随压力（后面会看到为什么），但是实际上并没有物理含义。
 
-因为
+因为变分
 $$
-dL = L_{\alpha}d{\alpha}+ L_{\mathbf{v}}d{\mathbf{v}}+L_{p}dp
+\delta L = \delta_{\alpha}L+ \delta_{\mathbf{v}}L+\delta_{p}L
 $$
 注意这里没有将粘度作为微分变量，是一种近似的做法，被称为“冻结湍流”。
 
-由于 $(\mathbf{u},q)$可以自由选取，取 适当的值使得 $L_{\mathbf{v}}d{\mathbf{v}}+L_pdp = 0$ 成立，便得到
+由于 $(\mathbf{u},q)$可以自由选取，取 适当的值使得 $\delta_{\mathbf{v}}L+\delta_pL = 0$ 成立，便得到
 $$
-L_{\alpha} = J_{\alpha} + \int_{\Omega}\mathbf{u}\cdot \mathbf{v}d\Omega
+\delta_{\alpha}L = \delta_{\alpha}J + \int_{\Omega}\mathbf{u}\cdot \mathbf{v}d\Omega
 $$
 当考虑网格中的目标函数关于 $\alpha$的梯度，可以得到
 $$
-\frac{\partial L}{\partial \alpha_i} = J_{\alpha_i} + \mathbf{u_i}\cdot \mathbf{v_i}V_i
+\frac{\partial L}{\partial \alpha_i} =  \frac{\partial J}{\partial\alpha_i} + \mathbf{u_i}\cdot \mathbf{v_i}V_i
 $$
 其中 $V_i$ 为网格体积。
 
-如果 $L_{\mathbf{v}}d{\mathbf{v}}+L_pdp = 0$ 成立，那么伴随方程
+如果 $\delta_{\mathbf{v}}L+\delta_pL = 0$ 成立，那么伴随方程
 $$
 \delta_{\mathbf{v}}J + \delta_{p}J +
 \int_{\Omega}\mathbf{u}\cdot [\nabla\cdot(\mathbf{v\delta v})+\nabla\cdot(\mathbf{\delta v v})   - \nabla\cdot(2\nu D(\delta\mathbf{v}))+\alpha \delta \mathbf{v}]d\Omega \\\\ - \int_{\Omega}q\nabla \cdot \delta \mathbf{v}d\Omega + \int_{\Omega}\mathbf{u}\cdot \nabla \delta pd\Omega = 0
