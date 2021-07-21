@@ -237,6 +237,36 @@ Ferziger的计算结果：
 
 {{< figure src="/images/Ferziger-on-LES/wallstress-2.png" title="supercritical wall stress">}}
 
+## 6. 亚格子模型的检验[^4]
+
+### 先验方法
+
+将直接数值模拟的结果进行滤波来计算亚格子应力$\bar{u}_i\bar{u}_j - \overline{u_iu_j}$，使用$\tau_{ij}^{\Delta}$表示，另外使用亚格子模型计算亚格子应力，表示为$\tau_{ij}^{\Delta mod}$，亚格子应力在空间分布上是很不均匀的，逐点比较没有意义，只能在统计意义上加以比较，具体操作是考察两个亚格子应力之间的相关系数。考察结果发现Smagorinsky模型的动量输运和真实情况差距很大，而耗散和实际情况相差不大，因此使用Smagorinsky模型得到的统计结果和DNS基本一致。大涡数值模拟中，亚格子耗散特性比亚格子应力更为重要，比较样本流动没有意义，大尺度脉动到小尺度脉动的能量传递是LES的关键量。
+
+### 后验方法
+
+后验方法是检验亚格子模型适用性的有力依据。Vreman的后验考核结果如下所示（算例为随时间发展的湍流混合层，考核标准为同一算例的DNS结果）
+
+M1：常系数Smagorinsky
+
+M2：尺度相似模型
+
+M3：基于Smagorinsky模型的动态模型
+
+M4：基于混合模型的动态模型
+
+| 诊断变量                                                     | M1   | M2   | M3   | M4   |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| $\int{\bar{u}_i\bar{u}_i d\boldsymbol{x}}$                   | -    | +    | 0    | ++   |
+| $\int{-\rho\tau_{ij}^{\Delta}\bar{S}_{ij}d\boldsymbol{x}}$   | -    | +    | ++   | +    |
+| $\int{min(-\rho\tau_{ij}^{\Delta}\bar{S}_{ij}, 0)d{\boldsymbol{x}}}$ | -    | 0    | -    | 0    |
+| $|\tau_{12}^{\Delta}|$                                       | -    | +    | -    | +    |
+| $E(k_1)$                                                     | -    | -    | +    | ++   |
+| $\bar{\omega}(x_1, x_2)$                                     | -    | -    | +    | ++   |
+| 最大涡量                                                     | -    | -    | +    | +    |
+| 动量厚度                                                     | -    | +    | -    | +    |
+
 [^1]:Smagorinsky, J. (1963). "General circulation experiments with the primitive equations: I. The basic experiment." Monthly weather review 91(3): 99-164.
 [^2]:Wyngaard, J. C. (2010). Turbulence in the Atmosphere, Cambridge University Press.
 [^3]:Pope. Turbulent Flows
+[^4]: 张兆顺等. 湍流理论与模拟
