@@ -3,15 +3,7 @@
         <title>cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/</link>
         <description>cat /var/log/life</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Dec 2020 20:07:12 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/" rel="self" type="application/rss+xml" /><item>
-                <title>Ferziger and Blazek on LES</title>
-                <link>https://fr13ndsdp.github.io/2020/ferziger-on-les/</link>
-                <pubDate>Mon, 14 Dec 2020 20:07:12 &#43;0800</pubDate>
-                <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/2020/ferziger-on-les/</guid>
-                <description>Some crap about turbulence and LES
-</description>
-            </item><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/" rel="self" type="application/rss+xml" /><item>
                 <title>Adjoint Optimization</title>
                 <link>https://fr13ndsdp.github.io/2020/adjoint-optimization/</link>
                 <pubDate>Thu, 03 Dec 2020 00:38:02 &#43;0800</pubDate>
@@ -81,6 +73,14 @@
                 <author>Fr13ndSDP</author>
                 <guid>https://fr13ndsdp.github.io/2020/dht11/</guid>
                 <description>DHT11温湿度传感器的使用——C51代码
+</description>
+            </item><item>
+                <title>#200 岛屿数量</title>
+                <link>https://fr13ndsdp.github.io/2020/200-number-of-islands/</link>
+                <pubDate>Sun, 28 Jun 2020 23:31:56 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2020/200-number-of-islands/</guid>
+                <description>最佳解法：广度优先搜素
 </description>
             </item></channel>
 </rss>

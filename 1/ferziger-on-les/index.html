@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ferziger and Blazek on LES | cat /var/log/life</title>
+        <meta name="Description" content="cat /var/log/life"><meta property="og:title" content="Ferziger and Blazek on LES" />
+<meta property="og:description" content="Some crap about turbulence and LES" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fr13ndsdp.github.io/1/ferziger-on-les/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ferziger and Blazek on LES"/>
+<meta name="twitter:description" content="Some crap about turbulence and LES"/>
+<meta name="application-name" content="Fr13ndSDP">
+<meta name="apple-mobile-web-app-title" content="Fr13ndSDP"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fr13ndsdp.github.io/1/ferziger-on-les/" /><link rel="next" href="https://fr13ndsdp.github.io/2020/hugo-go/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ferziger and Blazek on LES",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fr13ndsdp.github.io\/1\/ferziger-on-les\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "LES,湍流","wordcount":  5981 ,
+        "url": "https:\/\/fr13ndsdp.github.io\/1\/ferziger-on-les\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/fr13ndsdp.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"author": {
+                "@type": "Person",
+                "name": "Fr13ndSDP"
+            },"description": ""
+    }
+    </script></head>
+    <body><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="cat /var/log/life"><i class='fas fa-terminal'></i> cat /var/log/life</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-book'></i> 所有文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-sitemap'></i> 分类 </a><a class="menu-item" href="/about/"><i class='far fa-address-card'></i> 关于 </a><a class="menu-item" href="https://github.com/Fr13ndSDP" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="cat /var/log/life"><i class='fas fa-terminal'></i> cat /var/log/life</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-book'></i>所有文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-sitemap'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='far fa-address-card'></i>关于</a><a class="menu-item" href="https://github.com/Fr13ndSDP" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ferziger and Blazek on LES</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Fr13ndSDP</a></span>&nbsp;
+                    <span class="post-category">收录于<a href="/categories/cfd/">
+                                <i class="far fa-folder fa-fw"></i>CFD
+                            </a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=0001-01-01>0001-01-01</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 5981 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 12 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-大涡模拟方程">1. 大涡模拟方程</a></li>
+    <li><a href="#2-滤波3">2. 滤波</a></li>
+    <li><a href="#3--smagorinsky与相关模型">3.  Smagorinsky与相关模型</a></li>
+    <li><a href="#4-动态动力模型">4. 动态(动力)模型</a></li>
+    <li><a href="#5-les算例">5. LES算例</a>
+      <ul>
+        <li><a href="#surface-mounted-cube">Surface mounted cube</a></li>
+        <li><a href="#flow-over-a-sphere-in-sub-and-supercritical-re">Flow over a sphere in sub and supercritical Re</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-亚格子模型的检验4">6. 亚格子模型的检验</a>
+      <ul>
+        <li><a href="#先验方法">先验方法</a></li>
+        <li><a href="#后验方法">后验方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Some crap about turbulence and LES</p>
+<blockquote>
+<p>Versteeg, H. K. and W. Malalasekera (2007). An introduction to computational fluid dynamics: the finite volume method, Pearson education.</p>
+</blockquote>
+<p>雷诺数$Re$代表了流体中惯性力（与对流效应相关）和粘性力之间的比值。实验观察到，在某一临界雷诺数 ${Re}_{crit}$ 之下，流动是平稳的，流体的层与层间是有序的滑移。如果边界条件不随时间发生改变，流动是稳态的，此时称为<strong>层流</strong>。</p>
+<p>当雷诺数高于${Re}_{crit}$值时，就会发生一系列复杂的事件，最终导致流动特性的根本变化。 在最终状态下，流动行为是随机且混乱的。 即使在恒定施加的边界条件下，运动本质上也变得不稳定。 速度和所有其他流动特性以随机和混乱的方式变化，此时流动称为<strong>湍流</strong>。</p>
+<p>即使在速度和压力脉动仅存一维或者二维空间的流动中，湍流带来的扰动总是具有三维的空间特征。此外，湍流中往往还存在着涡，这些涡的尺度范围非常广，最大的涡通过称为<strong>涡伸展</strong>（vortex stretching）的过程与主流相互作用并从中提取能量。 剪切流中平均速度梯度的存在使旋转的涡变形，从而使得适当的涡被拉伸，因为它一端被迫比另一端移动得快。</p>
+<p>最大的涡的特征速度$\vartheta$和特征长度$\ell$具有与主流速度和长度相当的量级，可以定义一个“大涡”雷诺数${Re}_{\ell}=\vartheta\ell/\nu$，这个数值很大并将接近主流雷诺数，表明大涡中起主导作用的是惯性力，粘性力基本可以忽略。因此，这些大涡具有良好的无粘性，并且在涡伸展过程中其动量守恒，在主流做功作用下，其速度增大，截面积减小。小一些的涡虽然也受到主流影响，但较大程度上受到大涡的影响，因此能量从大涡一级级地传送到最小的涡上，这被称为<strong>能量级联</strong>（energy cascade）。湍流蕴含的能量也因此包含很宽的频率（$f$）或波数（$\kappa=2\pi f/U$）范围。湍流能谱如下图</p>
+<figure>
+    <img src="/images/Ferziger-on-LES/spectrum.png"/> <figcaption>
+            <h4>spectrum</h4>
+        </figcaption>
+</figure>
+
+<p>图中，谱能量$E(\kappa)$是波数的函数，单位$m^3/s^2$，它代表单位质量，单位波数的扰动动能。图中显示了最大的涡具有最大的动能，随着波数增大$E(\kappa)$迅速减小，因此最小的涡具有最低的能量。</p>
+<p>湍流中最小尺寸的运动大概是0.1到0.01mm的量级，频率10kHz，最小涡的雷诺数$R e_{\eta}=v \eta / \nu=1$。</p>
+<blockquote>
+<p>Ferziger, J. H., et al. (2020). Computational methods for fluid dynamics, Springer.</p>
+</blockquote>
+<h2 id="1-大涡模拟方程">1. 大涡模拟方程</h2>
+<p>湍流具有很宽的空间和时间尺度；在流体中的涡的尺度如左图所示，右图展示了一个典型的在流场中一点处速度分量的历史演变，这其中扰动的尺度是很明显的。</p>
+<figure>
+    <img src="/images/Ferziger-on-LES/vortex.png"/> <figcaption>
+            <h4>vortex</h4>
+        </figcaption>
+</figure>
+
+<p>大尺度的涡往往比小尺度的涡具有更大的能量；它们的大小和强度使得它们称为流场中守恒变量最强有力的传播者，而小的涡则更弱，并对守恒变量提供更小的输运作用。因此大涡模拟的基本思路就是对这些影响更大的大涡进行更精确的模拟。LES已经成为大气科学的主要工具，用于研究云层、降水、污染物质运输和山谷中的气流。在地球大气边界层中，LES所处理的物理过程包括浮力、旋转、夹带、凝结以及与粗糙地面和海洋表面的相互作用。LES甚至也被用于设计高压燃气透平并且在空气声学模拟中占据主导地位。</p>
+<p>要定义需要精确计算的量很重要。我们需要一个仅包含大尺度涡的速度场，而这个速度场最好是由原速度场滤波而得来的。在这种方法中，大的或被分辨率的场，即被模拟的场，本质上是完整的场的局部平均值。我们将使用一维符号;把它推广到三维是很简单的。滤波后速度定义为
+$$
+\bar{u}_i(x) = \int G(x,x^{'})u_i(x^{'})dx^{'}
+$$
+其中$G(x,x^{'})$为滤波器核函数，这是一个局部函数。在LES中应用的核函数包括一个高斯滤波器，一个盒式滤波器（box filter）和一个截止滤波器（将波数在截止值之上的所有傅里叶系数消除掉）。每一个滤波器都有一个与之对应的长度单位$\Delta$。一般认为尺度大于$\Delta$的涡是大涡，小于$\Delta$的是小涡，对这些小涡的计算需要引入模型。</p>
+<p>当对不可压缩流的N-S方程加以滤波，就会得到一组与URANS（unsteady RANS）方程组相似的方程：
+$$
+\frac{\partial \rho\bar{u}_i}{\partial t}+\frac{\partial(\rho \overline{u_i u_j})}{\partial x_j}=-\frac{\partial \bar{p}}{\partial x_i}+\frac{\partial}{\partial x_j}\left[\mu(\frac{\partial \bar{u}_i}{\partial x_j}+\frac{\partial \bar{u}_j}{\partial x_i})\right]
+$$</p>
+<p>由于连续性方程是线性的，滤波后不改变：
+$$
+\frac{\partial(\rho \bar{u}_i)}{\partial x_i} = 0
+$$</p>
+<p>由于很重要的一点：
+$$
+\overline{u_iu_j}\neq \bar{u}_i\bar{u}_j
+$$</p>
+<p>而该不等式左侧难以计算，因此在近似计算时由该不等式引起的误差表示为
+$$
+\tau^s_{ij} = -\rho(\overline{u_iu_j}-\bar{u}_{i}\bar{u}_{j})
+$$
+因此LES计算中的动量方程为
+$$
+\frac{\partial \rho\bar{u}_i}{\partial t}+\frac{\partial(\rho \bar{u}_i\bar{u}_j)}{\partial x_j}=\frac{\partial \tau^s_{ij}}{\partial x_j}-\frac{\partial \bar{p}}{\partial x_i}+\frac{\partial}{\partial x_j}\left[\mu(\frac{\partial \bar{u}_i}{\partial x_j}+\frac{\partial \bar{u}_j}{\partial x_i})\right]
+$$
+在LES中，$\tau^s_{ij}$被称为亚网格尺度雷诺应力（subgrid-scale Reynolds stress）。“应力”源自于对于这一项的处理方式而非物理本质，它实际上是由小尺度或未解析尺度的作用所引起的大尺度动量通量。“亚网格尺度”这个名字也具有误导性，因为滤波窗口宽度，$\Delta$，除了明显需要满足的条件$\Delta \geq h$外不必与网格大小$h$有关。当今，用来描述亚网格尺度雷诺应力的模型分为subgrid-scale(SGS)和subfilter-scale(SFS)模型。</p>
+<p>亚网格尺度雷诺应力包含小尺度场的局部平均值，因此它的模型应该基于局部速度场，或者可能基于局部流体运动的历史。后者可以通过求解偏微分方程模型来实现，从而获得确定亚网格尺度雷诺应力所需的参数。</p>
+<h2 id="2-滤波3">2. 滤波<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h2>
+<p>滤波，一种平均化操作。在DNS中，速度场$\boldsymbol U(\vec{x},t)$需要在非常细密的网格上（直到Kolmogorov 尺度$\eta$）被解析，在LES中，则需要对速度场进行低通滤波，使得滤波后的速度场$\overline{\boldsymbol U}{(\vec{x},t)}$在较粗的网格上得以被解析。</p>
+<p>滤波操作表示为
+$$
+\overline{\boldsymbol U}{(\vec{x},t)} = \int_{\Omega}G(\vec{r}, t)\boldsymbol{U}(\vec{x}-\vec{r},t)d\vec{r}
+$$
+其中$\Omega$表示整个流域，滤波函数满足归一化条件
+$$
+\int_{\Omega}G(\vec{r},\vec{x})d\vec{r} = 1
+$$
+在最简单的情况下，滤波函数是各向均匀的，即和$\vec{x}$无关。</p>
+<p>假设$U(x)$为定义在$-\infty &lt; x &lt; \infty$ 上的标量函数，暂且称之为速度场，很容易可以将其扩展到三维。使用各项均匀滤波函数$G(r)$，滤波后的速度场为
+$$
+\overline{U}(x) = \int_{-\infty}^{\infty}G(r)U(x-r)dr
+$$</p>
+<p>以盒式滤波器（Box Filter）为例，$\overline{U}(x)$就是在$x-1/2\Delta &lt; x^{\prime} &lt; x+1/2\Delta$上对于$U(x^\prime)$进行平均得到的。高斯滤波函数选取为
+$$
+G(r) = \sqrt{\frac{6}{\pi \Delta^2}} exp({-\frac{6r^2}{\Delta^2}})
+$$
+即均值为0，方差为$\sigma^2 = 1/12\Delta^2$的高斯分布。$\sigma^2$的选取是根据其二阶矩$\int_{-\infty}^{\infty}r^2G(r)dr = 1/12\Delta^2$，保持与盒式滤波器一致而确定的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">% 功能：对一维信号的高斯滤波，头尾r/2的信号不进行滤波</span>
+<span class="c">% r     :高斯滤波模板数（关联点数）</span>
+<span class="c">% sigma :标准差</span>
+<span class="c">% y     :需要进行高斯滤波的序列</span>
+<span class="c">% grid_scale: 网格分辨率</span>
+<span class="c">% delta :滤波尺度</span>
+<span class="n">grid_scale</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">grid_scale</span><span class="p">:</span><span class="mi">50</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="mi">10</span><span class="p">;</span>
+
+<span class="n">delta</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span> 
+<span class="n">r</span>        <span class="p">=</span> <span class="mi">5</span><span class="p">;</span> 
+<span class="n">sigma</span>    <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">delta</span>^<span class="mi">2</span><span class="o">/</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">y_filted</span> <span class="p">=</span> <span class="n">Gaussianfilter</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="n">fluc</span> <span class="p">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_filted</span><span class="p">;</span>
+<span class="c">% 作图对比</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_filted</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">fluc</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;高斯滤波&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;滤波前&#39;</span><span class="p">,</span><span class="s">&#39;滤波后&#39;</span><span class="p">,</span><span class="s">&#39;扰动&#39;</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span>y_filted <span class="p">=</span><span class="w"> </span><span class="nf">Gaussianfilter</span><span class="p">(</span>r, sigma, y<span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c">% 生成一维高斯滤波模板</span>
+<span class="n">GaussTemp</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span> <span class="p">:</span> <span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">GaussTemp</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">i</span><span class="o">-</span><span class="n">r</span><span class="p">)</span>^<span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span>^<span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">));</span>
+<span class="k">end</span>
+
+<span class="c">% 高斯滤波</span>
+<span class="n">y_filted</span> <span class="p">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="n">r</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">y_filted</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">-</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="nb">i</span><span class="o">+</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">GaussTemp</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><figure>
+    <img src="/images/Ferziger-on-LES/gaussian.png"/> <figcaption>
+            <h4>gaussian filter on scalar function</h4>
+        </figcaption>
+</figure>
+
+<h2 id="3--smagorinsky与相关模型">3.  Smagorinsky与相关模型</h2>
+<p>最早和最常用的次网格尺度模型是由Smagorinsky<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>提出的。这是一个涡-粘模型。所有这些模型都是基于这样一种假设，即亚网格雷诺应力的主要影响是输运作用和耗散的增加。由于这些现象是由于层流中的粘性造成的，通过合理地假设，一个可行的模型可能是
+$$
+\tau^s_{ij}-\frac{1}{3}\tau^s_{kk}\delta_{ij} = \mu_t\left(\frac{\partial \bar{u}_i}{\partial x_j}+\frac{\partial \bar{u}_j}{\partial x_i}\right)=2\mu_t\bar{S}_{ij}
+$$
+其中$\mu_t$表示涡粘度，$\bar{S}_{ij}$为大尺度场的应变率张量。Wyngaard<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>展示了Lilly是如何在1967年使用$\tau^s_{ij}$演化方程推导出这个模型的。类似的模型也经常用于RANS方程。</p>
+<p>亚网格尺度涡粘度可以由量纲理论推导出来，其形式为：
+$$
+\mu_t = {C_s}^2\rho\Delta^2|\bar{S}|
+$$
+其中$C_s$为无量纲模型参数，$\Delta$为滤波尺度，而 $|\bar{S}| =({\bar{S}_{ij}}^2)^{1/2}$</p>
+<p>涡流粘度的这种形式可以以多种方式得到。 理论提供了参数的估计。 这些方法中的大多数仅适用于各向同性湍流，它们都得出$C_s\approx 0.2$。 不幸的是，$C_s$不是恒定的。 它可能是雷诺数和/或其他无量纲参数的函数，并可能在不同的工况中采用不同的值。</p>
+<p>Smagorinsky模型尽管较为成功，但是仍然存在问题，它的使用也在下降，取而代之的是下面描述的更复杂的模型。虽然不推荐使用，但它仍然被使用。如果将该模型用于管道流，需要做多处修改。流体中$C_s$参数的值必须从0.2降低到大约0.065，这将涡粘性降低了几乎一个数量级。所有剪切流都需要这种幅度的变化。在靠近通道表面的区域，该值必须进一步减小（在不存在湍流的壁面处的涡粘度应该为0）。一种成功的方法是借用长期以来在RANS模型中用于降低近壁面涡粘性的van Driest阻尼:
+$$
+C_s = C_{s0}(1-e^{-n^+/A^+})^2
+$$
+其中$n^+$为无量纲壁面距离（$n^+=nu_{\tau}/\nu$，其中$u_{\tau}$为剪切速度，$u_{\tau} = \sqrt{\tau_{wall}/\rho}$，$\tau_{wall}$为壁面处切应力）。$A^+$为常数并通常取为25左右。尽管这个修改产生了期望的结果，但是很难在LES的视角下证明它是正确的。</p>
+<p>更进一步的问题是，在靠近壁面的地方，流动的结构是各向异性的。这产生了低速和高速流体区域(条纹);在展向和法线方向上，它们都是大约1000个粘性单元长，30-50个粘性单元宽。为了解析这些条纹，需要高度各向异性的网格，并且SGS模型中滤波尺度$\Delta$的选择并不明确。通常选择为$(\Delta_1\Delta_2\Delta_3)^{1/3}$或者$(\Delta_1^2+\Delta_2^2+\Delta_3^2)^{1/2}$，其中$\Delta_i$为$i$方向的网格尺度。</p>
+<p>因此，Smagorinsky模型存在许多困难。 如果我们希望模拟更复杂和/或更高的雷诺数流，那么就需要拥有更准确的模型。事实上，基于DNS数据得出的结果的详细测试表明，Smagorinsky模型在表示亚网格尺度应力的细节方面相当差。特别地，涡粘模型强制将$\tau^s_{ij}$与$\bar{S}_{ij}$关联起来，而*这种关联在现实上是不存在的*。</p>
+<h2 id="4-动态动力模型">4. 动态(动力)模型</h2>
+<p>小尺度的未解析的涡在很多方面表现出和解析尺度下的小涡的相似性，基于这个想法提出另一种亚格子尺度模型，即尺度相似模型。其主要想法是强调解析尺度中的较大涡（尺度小于$\Delta$）和解析尺度中的较小涡（尺度大于$\Delta$）之间的相互作用。基于这个想法有模型
+$$
+\tau_{i j}^{\mathrm{s}}=-\rho\left(\overline{\bar{u}_{i} \bar{u}_{j}}-\overline{\bar{u}}_{i} \overline{\bar{u}}_{j}\right)
+$$
+其中双横线表示一个量被滤波两次，这个模型和实际的SGS雷诺应力非常相关，但是却几乎不能耗散任何能量因此也就无法作为一个独立的SGS模型。这一模型中从大尺度到小尺度的能量传递（正级联 forward scatter）和从最小的解析尺度到最大尺度的能量传递（反级联 back scatter）几乎相等，这一点很有用。为了纠正耗散过小的问题，可以结合Smagorinsky模型来构建一个混合模型。</p>
+<p>在动态模型中，涡粘度表达式中的模型常数被替换为一个在时间和空间中演化的参数$C_d$
+$$
+\mu_t = C_d(\vec{r},t)\rho \Delta^2|\bar{S}|
+$$
+Germano提出使用“试滤波（test filter）” $\hat{\Delta}$ 来进行二次滤波，试滤波的尺度需要大于$\Delta$，通常$\hat{\Delta} = 2\Delta$，二次滤波后引入<em>亚试尺度应力(subtest-scale stress)</em> $\tau_{ij}^{ST}$
+$$
+\tau_{i j}^{S T}=-\rho(\widehat{\overline{u_{i} u_{j}}}-\hat{\bar{u}}_{i} \hat{\bar{u}}_{j})
+$$
+并且有
+$$
+\tau_{ij}^{ST} - \frac{1}{3}\tau_{ij}^{ST}\delta_{ij} = 2C_s^2\rho \hat{\Delta}|\hat{\bar{S}}|\hat{\bar{S}}_{ij}
+$$
+而在原滤波尺度下
+$$
+\tau_{i j}^{\mathrm{s}}=-\rho\left(\overline{u_{i} u_{j}}-\bar{u}_{i} \bar{u}_{j}\right)\\ \tau_{i j}^{\mathrm{s}}-\frac{1}{3} \tau_{k k}^{\mathrm{s}} \delta_{i j}=2 C_{S}^{2} \rho \Delta^{2}|\bar{S}| \bar{S}_{i j}
+$$
+$\tau_{ij}^{ST}$与亚格子尺度应力$\tau_{ij}^s$ 的关系表示为 Germano Identidy:
+$$
+\mathcal{L}_{i j}=\tau_{ij}^{ST} - \tau_{ij}^{s} = \rho\left(\widehat{\bar{u}_{i} \bar{u}_{j}}-\hat{\bar{u}}_{i} \hat{\bar{u}}_{j}\right)=2 C_{S}^{2} \rho\left(\hat{\Delta}|\hat{\bar{S}}| \hat{\bar{S}}_{i j}-\Delta^{2} \widehat{|\bar{S}| \bar{S}_{i j}}\right)+\frac{1}{3} \delta_{i j} \mathcal{L}_{k k}
+$$
+其中$\mathcal{L}_{kk}$包含各向同性项并且只有$C_s^2$是未知的。类比SGS应力，得到
+$$
+\mathcal{L}_{ij}-\frac{1}{3}\delta_{ij}\mathcal{L}_{ij} = 2C_d M_{ij}
+$$
+其中
+$$
+M_{ij} =\left(\hat{\Delta}|\hat{\bar{S}}| \hat{\bar{S}}_{i j}-\Delta^{2} \widehat{|\bar{S}| \bar{S}_{i j}}\right)
+$$
+注意到Germano Iddentity实际上对于一个未知数$C_s^2$给出了六个方程（对于每一个$S_{ij}$分量），因此方程是超定的。为了解决这一问题，Lilly使用最小二乘法给出了$C_d(\vec{r},t)$的表达式：
+$$
+C_d(\vec{r},t) = \frac{1}{2}\rho\frac{\mathcal{L}_{ij}M_{ij}}{M_{mn}M_{mn}}
+$$
+在实际使用中，常对分子分母取系综平均，即
+$$
+C_d(\vec{r},t) = \frac{1}{2}\rho\frac{\langle \mathcal{L}_{ij}M_{ij}\rangle}{\langle M_{mn}M_{mn}\rangle}
+$$</p>
+<p>动态模型的优点：</p>
+<ul>
+<li>在剪切流中Smagorinsky系数要远小于在均匀各向同性湍流中的取值，动态模型可以自动做到这一点</li>
+<li>模型参数在接近壁面处需要被进一步减小，动态模型自动在近壁区以合适的方式减小参数值</li>
+<li>动态模型适合于各向异性网格，滤波尺度选取不确定的问题在一定程度上被动态过程修正。</li>
+</ul>
+<p>存在的问题：</p>
+<ul>
+<li>动态过程计算得到的模型参数是随时间和空间坐标快速变化的量，因此参数可能会取得非常大的正/负值。尽管负的涡粘度可以被视为是能量反级联的表现，但是过大的负值或者持续过长的时间有可能会引起数值不稳定。</li>
+</ul>
+<h2 id="5-les算例">5. LES算例</h2>
+<h3 id="surface-mounted-cube">Surface mounted cube</h3>
+<figure>
+    <img src="/images/Ferziger-on-LES/surface%20mounted%20cube.png"/> <figcaption>
+            <h4>surface mounted cube</h4>
+        </figcaption>
+</figure>
+
+<p>入口为充分发展湍流，出口边界条件为
+$$
+\frac{\partial \phi}{\partial t}+U\frac{\partial \phi}{\partial n}=0
+$$
+壁面为无滑移边界条件，侧面为周期性边界。使用$240\times 128\times128$的网格，二阶精度。</p>
+<p>Ferziger的计算结果：</p>
+<figure>
+    <img src="/images/Ferziger-on-LES/result.png"/> <figcaption>
+            <h4>result</h4>
+        </figcaption>
+</figure>
+
+<h3 id="flow-over-a-sphere-in-sub-and-supercritical-re">Flow over a sphere in sub and supercritical Re</h3>
+<p>毕业论文中，在亚临界雷诺数$Re = 10^4$和超临界雷诺数$Re =10^6$下的球体绕流大涡模拟，表现出明显的湍流边界层再附着和尾迹区宽度的明显改变以及阻力系数的显著改变。</p>
+<figure>
+    <img src="/images/Ferziger-on-LES/sub_critic.png"/> <figcaption>
+            <h4>subcritical</h4>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="/images/Ferziger-on-LES/super_critic.png"/> <figcaption>
+            <h4>supercritical</h4>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="/images/Ferziger-on-LES/wallstress-1.png"/> <figcaption>
+            <h4>subcritical wall stress</h4>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="/images/Ferziger-on-LES/wallstress-2.png"/> <figcaption>
+            <h4>supercritical wall stress</h4>
+        </figcaption>
+</figure>
+
+<h2 id="6-亚格子模型的检验4">6. 亚格子模型的检验<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></h2>
+<h3 id="先验方法">先验方法</h3>
+<p>将直接数值模拟的结果进行滤波来计算亚格子应力$ \bar{u_i}\bar{u_j}- \overline{u_iu_j}$，使用$\tau_{ij}^{\Delta}$表示，另外使用亚格子模型计算亚格子应力，表示为$\tau_{ij}^{\Delta mod}$，亚格子应力在空间分布上是很不均匀的，逐点比较没有意义，只能在统计意义上加以比较，具体操作是考察两个亚格子应力之间的相关系数。考察结果发现Smagorinsky模型的动量输运和真实情况差距很大，而耗散和实际情况相差不大，因此使用Smagorinsky模型得到的统计结果和DNS基本一致。大涡数值模拟中，亚格子耗散特性比亚格子应力更为重要，比较样本流动没有意义，大尺度脉动到小尺度脉动的能量传递是LES的关键量。</p>
+<h3 id="后验方法">后验方法</h3>
+<p>后验方法是检验亚格子模型适用性的有力依据。Vreman的后验考核结果如下所示（算例为随时间发展的湍流混合层，考核标准为同一算例的DNS结果）</p>
+<p>M1：常系数Smagorinsky</p>
+<p>M2：尺度相似模型</p>
+<p>M3：基于Smagorinsky模型的动态模型</p>
+<p>M4：基于混合模型的动态模型</p>
+<table>
+<thead>
+<tr>
+<th>诊断变量</th>
+<th>M1</th>
+<th>M2</th>
+<th>M3</th>
+<th>M4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\int{\bar{u}_i\bar{u}_i d\boldsymbol{x}}$</td>
+<td>-</td>
+<td>+</td>
+<td>0</td>
+<td>++</td>
+</tr>
+<tr>
+<td>$\int{-\rho\tau_{ij}^{\Delta}\bar{S}_{ij}d\boldsymbol{x}}$</td>
+<td>-</td>
+<td>+</td>
+<td>++</td>
+<td>+</td>
+</tr>
+<tr>
+<td>$\int{min(-\rho\tau_{ij}^{\Delta}\bar{S}_{ij}, 0)d{\boldsymbol{x}}}$</td>
+<td>-</td>
+<td>0</td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>$\vert \tau_{12}^{\Delta}\vert$</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr>
+<td>$E(k_1)$</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>++</td>
+</tr>
+<tr>
+<td>$\bar{\omega}(x_1, x_2)$</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>++</td>
+</tr>
+<tr>
+<td>最大涡量</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>动量厚度</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Pope. Turbulent Flows <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Smagorinsky, J. (1963). &ldquo;General circulation experiments with the primitive equations: I. The basic experiment.&rdquo; Monthly weather review 91(3): 99-164. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Wyngaard, J. C. (2010). Turbulence in the Atmosphere, Cambridge University Press. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>张兆顺等. 湍流理论与模拟 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 0001-01-01 更新</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/1/ferziger-on-les/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/les%E6%B9%8D%E6%B5%81/">LES,湍流</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/2020/hugo-go/" class="next" rel="next" title="HUGO搭建博客">HUGO搭建博客<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.72.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.0"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Fr13ndSDP</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript">
+    window.config = {"code":{"copyTitle":"复制到剪贴板","maxShownLines":30},"comment":{},"headerMode":{"desktop":"fixed","mobile":"auto"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};
+</script><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2CPromise%2CObject.entries%2CObject.assign%2CObject.values%2Cfetch%2CElement.prototype.after%2CArray.prototype.fill%2CIntersectionObserver%2CArray.from%2CArray.prototype.find%2CMath.sign"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
