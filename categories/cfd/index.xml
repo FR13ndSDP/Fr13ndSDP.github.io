@@ -3,7 +3,23 @@
         <title>CFD | 分类 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/categories/cfd/</link>
         <description>CFD | 分类 | cat /var/log/life</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 10:56:19 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/categories/cfd/" rel="self" type="application/rss+xml" /><item>
+                <title>AMReX and Combustion</title>
+                <link>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</link>
+                <pubDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</guid>
+                <description>介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用
+</description>
+            </item><item>
+                <title>Flow Stability and Transition: Introduction</title>
+                <link>https://fr13ndsdp.github.io/2021/flow-stability-and-transition/</link>
+                <pubDate>Tue, 27 Jul 2021 11:44:21 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/flow-stability-and-transition/</guid>
+                <description>流动稳定性与转捩
+</description>
+            </item><item>
                 <title>Ferziger and Blazek on LES</title>
                 <link>https://fr13ndsdp.github.io/2021/ferziger-and-blazek-on-les/</link>
                 <pubDate>Tue, 27 Jul 2021 10:56:19 &#43;0800</pubDate>

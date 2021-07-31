@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AMReX | 标签 | cat /var/log/life</title>
+        <link>https://fr13ndsdp.github.io/tags/amrex/</link>
+        <description>AMReX | 标签 | cat /var/log/life</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/tags/amrex/" rel="self" type="application/rss+xml" /><item>
+                <title>AMReX and Combustion</title>
+                <link>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</link>
+                <pubDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</guid>
+                <description>介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用
+</description>
+            </item></channel>
+</rss>

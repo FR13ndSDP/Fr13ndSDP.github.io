@@ -3,7 +3,23 @@
         <title>所有文章 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/posts/</link>
         <description>所有文章 | cat /var/log/life</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 10:56:19 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+                <title>AMReX and Combustion</title>
+                <link>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</link>
+                <pubDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</guid>
+                <description>介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用
+</description>
+            </item><item>
+                <title>Flow Stability and Transition: Introduction</title>
+                <link>https://fr13ndsdp.github.io/2021/flow-stability-and-transition/</link>
+                <pubDate>Tue, 27 Jul 2021 11:44:21 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/flow-stability-and-transition/</guid>
+                <description>流动稳定性与转捩
+</description>
+            </item><item>
                 <title>Ferziger and Blazek on LES</title>
                 <link>https://fr13ndsdp.github.io/2021/ferziger-and-blazek-on-les/</link>
                 <pubDate>Tue, 27 Jul 2021 10:56:19 &#43;0800</pubDate>
@@ -66,21 +82,6 @@
                 <author>Fr13ndSDP</author>
                 <guid>https://fr13ndsdp.github.io/2020/739-daily-temperatures/</guid>
                 <description>单调栈解法
-</description>
-            </item><item>
-                <title>#752 Open the Lock</title>
-                <link>https://fr13ndsdp.github.io/2020/752-open-the-lock/</link>
-                <pubDate>Thu, 02 Jul 2020 01:06:40 &#43;0800</pubDate>
-                <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/2020/752-open-the-lock/</guid>
-                <description>题目 你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： &amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;, &amp;lsquo;2&amp;rsquo;, &amp;lsquo;3&amp;rsquo;, &amp;lsquo;4&amp;rsquo;, &amp;lsquo;5&amp;rsquo;, &amp;lsquo;6&amp;rsquo;, &amp;lsquo;7&amp;rsquo;, &amp;lsquo;8&amp;rsquo;, &amp;lsquo;9&amp;rsquo; 。每个拨轮可以自由旋转：例如把 &amp;lsquo;9&amp;rsquo; 变为 &amp;lsquo;0&amp;rs</description>
-            </item><item>
-                <title>DHT11温湿度传感器——51单片机</title>
-                <link>https://fr13ndsdp.github.io/2020/dht11/</link>
-                <pubDate>Tue, 30 Jun 2020 20:05:35 &#43;0800</pubDate>
-                <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/2020/dht11/</guid>
-                <description>DHT11温湿度传感器的使用——C51代码
 </description>
             </item></channel>
 </rss>
