@@ -185,13 +185,129 @@ $$
 
 ### Kelvin-Helmhotz 不稳定性的数学表述
 
+![](C:\Users\Feynman\Desktop\blog\static\images\flow-stability-1\kh.png)
 
+无粘不可压缩势流的速度势函数满足
+$$
+\nabla^2 \phi_1 = 0\\\\ \nabla^2 \phi_2 = 0
+$$
+设扰动势函数为$\Phi$，则有
+$$
+\phi_1 = U_1 x +\Phi_1\\\\ \phi_2 = U_2 x + \Phi_2
+$$
+因此代入上式有
+$$
+\nabla^2 \Phi_1 = \nabla^2 \Phi_2 = 0 \tag{linear Eq}
+$$
+在无限远处扰动消失，则有
+$$
+\Phi_1 \to 0,\quad y \to \infty\\\\ \Phi_2 \to 0,\quad y\to -\infty \tag{B.C. 1}
+$$
+假设界面处的微小形变由$y = \eta(x,t)$表示，那么在任意一点$(x,y)$处，任何时间都满足$y - \eta(x,t) = 0$，那么
+$$
+f(x,y,t) = y-\eta(x,t)
+$$
+在界面上恒为零。假设界面的移动速度为$\bar{V}_{int}$，那么界面处满足
+$$
+\frac{Df}{Dt} = \frac{\partial f}{\partial t}+\bar{V}_{int}\cdot \nabla f = 0
+$$
+因此在界面上得到
+$$
+v_{1}^{'} = \frac{\partial \Phi_1}{\partial y} = \frac{\partial \eta}{\partial t}+(U_1+u_1^{'})\frac{\partial \eta}{\partial x}\\\\ v_{2}^{'} = \frac{\partial \Phi_2}{\partial y} = \frac{\partial \eta}{\partial t}+(U_2+u_2^{'})\frac{\partial \eta}{\partial x}
+$$
+其中$v_x$与$u_x$分别为界面上/下的扰动速度分量。注意到$u_1^{'} \ll U_1,\frac{\partial \eta}{\partial x} \ll 1$，则在$y=0$处近似成立
+$$
+\frac{\partial \Phi_1}{\partial y} = \frac{\partial \eta}{\partial t}+U_1\frac{\partial \eta}{\partial x}\\\\ \frac{\partial \Phi_2}{\partial y} = \frac{\partial \eta}{\partial t}+U_2\frac{\partial \eta}{\partial x} \tag{B.C. 2}
+$$
+此称之为运动条件（kinematic condition），而界面两侧压强相等的条件称之为动力条件，表述为：
+
+压强满足非定常势流伯努利方程
+$$
+\frac{\partial \phi_1}{\partial t}+\frac{1}{2}(\nabla \phi_1)^2 +\frac{p_1}{\rho_1} + gy_1 = c_1\\\\ \frac{\partial \phi_2}{\partial t}+\frac{1}{2}(\nabla \phi_2)^2 +\frac{p_2}{\rho_2} + gy_2 = c_2\\\\
+$$
+由$p_1=p_2$得到
+$$
+\rho_1c_1 - \rho_1\frac{\partial \phi_1}{\partial t} - \frac{1}{2}\rho_1(\nabla \phi_1)^2-\rho_1g\eta = \rho_2c_2-\rho_2\frac{\partial \phi_2}{\partial t}-\frac{1}{2}\rho_2(\nabla \phi_2)^2 - g\rho_2\eta
+$$
+在无扰动时，满足$\frac{\partial \phi_1}{\partial t} = \frac{\partial \phi_2}{\partial t} = 0，y=\eta = 0$，因此有约束条件
+$$
+\rho_1(\frac{1}{2}U_1^2-c_1) = \rho_2(\frac{1}{2}U_2^2-c_2)
+$$
+将$\phi_1 = U_1x+\Phi_1,\phi_2 = U_2x+\Phi_2$代入动力条件，使用约束条件化简，并略去扰动速度乘积，得到
+$$
+\rho_1(\frac{\partial \Phi_1}{\partial t}+U_1\frac{\partial \Phi_1}{\partial x} + g\eta) = \rho_2(\frac{\partial \Phi_2}{\partial t}+U_2\frac{\partial \Phi_2}{\partial x} + g\eta)\quad at\ y=0 \tag{B.C. 3}
+$$
+引入扰动形式
+$$
+\eta = \hat{\eta}e^{ik(x-ct)}\\\\ \Phi_1 = \hat{\Phi}_1(y)e^{ik(x-ct)}\\\\ \Phi_2 = \hat{\Phi}_2(y)e^{ik(x-ct)}
+$$
+其中$k$为实数，波速$c = c_r+ic_i$。代入线性方程得到
+$$
+-k^2\hat{\Phi}_1+\frac{\partial^2 \hat{\Phi}_1}{\partial y^2} = 0\\\\ -k^2\hat{\Phi}_2+\frac{\partial^2 \hat{\Phi}_2}{\partial y^2} = 0
+$$
+以上方程有指数形式解，结合B.C. 1，可设为
+$$
+\hat{\Phi}_1 = Ae^{-ky}\\\\ \hat{\Phi}_2 = Be^{ky}
+$$
+则有
+$$
+\Phi_1 = Ae^{-ky}e^{ik(x-ct)}\quad \Phi_2 = Be^{ky}e^{ik(x-ct)}
+$$
+代入B.C.2 ，有
+$$
+\frac{\partial \Phi_2}{\partial y} = -Ake^{-ky}e^{ik(x-ct)} = \frac{\partial \eta}{\partial t}+U_1\frac{\partial \eta}{\partial x} = -cik\hat{\eta}e^{ik(x-ct)}+U_1ik\hat{\eta}e^{ik(x-ct)}\\\\ \Rightarrow A+i(U_1 - c)\hat{\eta} = 0
+$$
+同样有$B - i(U_2-c)\hat{\eta} = 0$，代入B.C. 3 则得到
+$$
+ik\rho_1(U_1-c)A - ik\rho_2(U_2-c)B +(\rho_1 - \rho_2)g\hat{\eta} = 0
+$$
+整理一下，写成
+$$
+\begin{bmatrix}
+1&0&i(U_1-c)\\
+0&1&-i(U_2-c)\\
+ik\rho_1(U_1-c)&-ik\rho_2(U_2-c)&(\rho_1-\rho_2)g
+\end{bmatrix}
+\begin{bmatrix}
+A\\
+B\\
+\hat{\eta}
+\end{bmatrix}
+=\begin{bmatrix}
+0\\
+0\\
+0
+\end{bmatrix}
+$$
+若该线性方程组有非零解，则系数矩阵行列式为0，因此有
+$$
+c = c_r+c_i = \frac{\rho_1U_1+\rho_2U_2}{\rho_1 + \rho_2}\pm [\frac{g}{k}\frac{\rho_2-\rho_1}{\rho_2+\rho_1} - \rho_1\rho_2(\frac{U_1-U_2}{\rho_1+\rho_2})^2]^{1/2}
+$$
+可以看到，当平方根内为正数时，波速为实数（$c_i =0$），因此这时的两个解都是中立稳定的，即扰动的增长率为零。即稳定条件为
+$$
+k \leq \frac{g}{\rho_1\rho_2}\frac{\rho_2^2 - \rho_2^2}{(U_1-U_2)^2}
+$$
+另一方面，当$c_i>0$时解为不稳定的，即
+$$
+k >\frac{g}{\rho_1\rho_2}\frac{\rho_2^2 - \rho_2^2}{(U_1-U_2)^2}
+$$
+可以看到，对于每一个不稳定解，都对应着一个稳定解（扰动衰减）。如果$U_1 \neq U_2$，那么总是能够找到足够大的$k$，使得出现不稳定解。当$U_1 =U_2= 0$，可以得到不混溶不同密度液体界面波的色散关系
+$$
+c = \sqrt{\frac{g}{k}\frac{\rho_2 - \rho_1}{\rho_2 + \rho_1}}\quad or\quad \omega = \sqrt{gtAt} 
+$$
+其中$At = (\rho_2-\rho_1)/(\rho_2+\rho_1)$为Atwood数。考虑一种特例，即$\rho_1 = \rho_2$，此时速度间断面被称为涡层，在很薄的速度间断面内处处有旋。此时有
+$$
+c = c_r+ic_i = \frac{1}{2}(U_1+U_2)\pm i\frac{1}{2}|U_1-U_2|
+$$
+因此可以看到，涡层中的速度间断总是不稳定的。
 
 ## 2. 平行流稳定性的弱非线性理论
 
 
 
 ## 3. 转捩模式
+
+
 
 ### Tollmien-Schlichting 波的二次失稳
 
