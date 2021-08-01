@@ -181,4 +181,20 @@ $$
 
 {{< figure src="/images/flow-stability-1/spatial.png" title="spatial problem">}}
 
-上图为线性理论得到的平面Poiseuille流的中性曲线，临界雷诺数$Re_L$约为5772.22。
+上图为线性理论得到的平面Poiseuille流的中性曲线，曲线包围的内侧为不稳定区，外侧则为稳定区，对于平面Poiseuille流，临界雷诺数$Re_L$约为5772.22。
+
+### Kelvin-Helmhotz 不稳定性的数学表述
+
+
+
+## 2. 平行流稳定性的弱非线性理论
+
+
+
+## 3. 转捩模式
+
+### Tollmien-Schlichting 波的二次失稳
+
+### 条纹失稳（streak breakdown）
+
+### 钝锥转捩与斜失稳（Oblique breakdown）
