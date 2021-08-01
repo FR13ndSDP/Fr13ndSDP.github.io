@@ -32,7 +32,7 @@
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "流动稳定性,转捩","wordcount":  5557 ,
+            },"genre": "posts","keywords": "流动稳定性,转捩","wordcount":  5554 ,
         "url": "https:\/\/fr13ndsdp.github.io\/2021\/flow-stability-and-transition\/","datePublished": "2021-07-27T11:44:21+08:00","dateModified": "2021-07-27T11:44:21+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -93,7 +93,7 @@
                                 <i class="far fa-folder fa-fw"></i>CFD
                             </a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2021-07-27>2021-07-27</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 5557 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 5554 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 12 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -307,14 +307,12 @@ $$
 
 <p>上图为线性理论得到的平面Poiseuille流的中性曲线，曲线包围的内侧为不稳定区，外侧则为稳定区，对于平面Poiseuille流，临界雷诺数$Re_L$约为5772.22。</p>
 <h3 id="kelvin-helmhotz-不稳定性的数学表述">Kelvin-Helmhotz 不稳定性的数学表述</h3>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-sizes="auto"
-        data-srcset="/C:%5cUsers%5cFeynman%5cDesktop%5cblog%5cstatic%5cimages%5cflow-stability-1%5ckh.png, /C:%5cUsers%5cFeynman%5cDesktop%5cblog%5cstatic%5cimages%5cflow-stability-1%5ckh.png 1.5x, /C:%5cUsers%5cFeynman%5cDesktop%5cblog%5cstatic%5cimages%5cflow-stability-1%5ckh.png 2x"
-        data-src="/C:%5cUsers%5cFeynman%5cDesktop%5cblog%5cstatic%5cimages%5cflow-stability-1%5ckh.png"
-        alt="/C:\Users\Feynman\Desktop\blog\static\images\flow-stability-1\kh.png"
-        title="/C:\Users\Feynman\Desktop\blog\static\images\flow-stability-1\kh.png" /></p>
+<figure>
+    <img src="/images/flow-stability-1/kh.png"/> <figcaption>
+            <h4>surface wave</h4>
+        </figcaption>
+</figure>
+
 <p>无粘不可压缩势流的速度势函数满足
 $$
 \nabla^2 \phi_1 = 0\\ \nabla^2 \phi_2 = 0
@@ -335,9 +333,9 @@ $$
 $$
 f(x,y,t) = y-\eta(x,t)
 $$
-在界面上恒为零。假设界面的移动速度为$\bar{V}<em>{int}$，那么界面处满足
+在界面上恒为零。假设界面的移动速度为$\bar{V}$，那么界面处满足
 $$
-\frac{Df}{Dt} = \frac{\partial f}{\partial t}+\bar{V}</em>{int}\cdot \nabla f = 0
+\frac{Df}{Dt} = \frac{\partial f}{\partial t}+\bar{V}\cdot \nabla f = 0
 $$
 因此在界面上得到
 $$
@@ -350,7 +348,7 @@ $$
 此称之为运动条件（kinematic condition），而界面两侧压强相等的条件称之为动力条件，表述为：</p>
 <p>压强满足非定常势流伯努利方程
 $$
-\frac{\partial \phi_1}{\partial t}+\frac{1}{2}(\nabla \phi_1)^2 +\frac{p_1}{\rho_1} + gy_1 = c_1\\ \frac{\partial \phi_2}{\partial t}+\frac{1}{2}(\nabla \phi_2)^2 +\frac{p_2}{\rho_2} + gy_2 = c_2\\<br>
+\frac{\partial \phi_1}{\partial t}+\frac{1}{2}(\nabla \phi_1)^2 +\frac{p_1}{\rho_1} + gy_1 = c_1\\ \frac{\partial \phi_2}{\partial t}+\frac{1}{2}(\nabla \phi_2)^2 +\frac{p_2}{\rho_2} + gy_2 = c_2
 $$
 由$p_1=p_2$得到
 $$
@@ -391,19 +389,13 @@ $$
 整理一下，写成
 $$
 \begin{bmatrix}
-1&amp;0&amp;i(U_1-c)\<br>
-0&amp;1&amp;-i(U_2-c)\<br>
-ik\rho_1(U_1-c)&amp;-ik\rho_2(U_2-c)&amp;(\rho_1-\rho_2)g
+1&amp;0&amp;i(U_1-c)\\ 0&amp;1&amp;-i(U_2-c)\\ ik\rho_1(U_1-c)&amp;-ik\rho_2(U_2-c)&amp;(\rho_1-\rho_2)g
 \end{bmatrix}
 \begin{bmatrix}
-A\<br>
-B\<br>
-\hat{\eta}
+A\\ B\\ \hat{\eta}
 \end{bmatrix}
 =\begin{bmatrix}
-0\<br>
-0\<br>
-0
+0\\ 0\\ 0
 \end{bmatrix}
 $$
 若该线性方程组有非零解，则系数矩阵行列式为0，因此有

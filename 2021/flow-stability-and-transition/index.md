@@ -185,7 +185,7 @@ $$
 
 ### Kelvin-Helmhotz 不稳定性的数学表述
 
-![](C:\Users\Feynman\Desktop\blog\static\images\flow-stability-1\kh.png)
+{{< figure src="/images/flow-stability-1/kh.png" title="surface wave">}}
 
 无粘不可压缩势流的速度势函数满足
 $$
@@ -207,9 +207,9 @@ $$
 $$
 f(x,y,t) = y-\eta(x,t)
 $$
-在界面上恒为零。假设界面的移动速度为$\bar{V}_{int}$，那么界面处满足
+在界面上恒为零。假设界面的移动速度为$\bar{V}$，那么界面处满足
 $$
-\frac{Df}{Dt} = \frac{\partial f}{\partial t}+\bar{V}_{int}\cdot \nabla f = 0
+\frac{Df}{Dt} = \frac{\partial f}{\partial t}+\bar{V}\cdot \nabla f = 0
 $$
 因此在界面上得到
 $$
@@ -223,7 +223,7 @@ $$
 
 压强满足非定常势流伯努利方程
 $$
-\frac{\partial \phi_1}{\partial t}+\frac{1}{2}(\nabla \phi_1)^2 +\frac{p_1}{\rho_1} + gy_1 = c_1\\\\ \frac{\partial \phi_2}{\partial t}+\frac{1}{2}(\nabla \phi_2)^2 +\frac{p_2}{\rho_2} + gy_2 = c_2\\\\
+\frac{\partial \phi_1}{\partial t}+\frac{1}{2}(\nabla \phi_1)^2 +\frac{p_1}{\rho_1} + gy_1 = c_1\\\\ \frac{\partial \phi_2}{\partial t}+\frac{1}{2}(\nabla \phi_2)^2 +\frac{p_2}{\rho_2} + gy_2 = c_2
 $$
 由$p_1=p_2$得到
 $$
@@ -264,19 +264,13 @@ $$
 整理一下，写成
 $$
 \begin{bmatrix}
-1&0&i(U_1-c)\\
-0&1&-i(U_2-c)\\
-ik\rho_1(U_1-c)&-ik\rho_2(U_2-c)&(\rho_1-\rho_2)g
+1&0&i(U_1-c)\\\\ 0&1&-i(U_2-c)\\\\ ik\rho_1(U_1-c)&-ik\rho_2(U_2-c)&(\rho_1-\rho_2)g
 \end{bmatrix}
 \begin{bmatrix}
-A\\
-B\\
-\hat{\eta}
+A\\\\ B\\\\ \hat{\eta}
 \end{bmatrix}
 =\begin{bmatrix}
-0\\
-0\\
-0
+0\\\\ 0\\\\ 0
 \end{bmatrix}
 $$
 若该线性方程组有非零解，则系数矩阵行列式为0，因此有
