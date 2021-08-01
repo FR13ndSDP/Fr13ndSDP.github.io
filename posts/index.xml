@@ -3,7 +3,14 @@
         <title>所有文章 | cat /var/log/life</title>
         <link>https://fr13ndsdp.github.io/posts/</link>
         <description>所有文章 | cat /var/log/life</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Aug 2021 11:04:53 &#43;0800</lastBuildDate><atom:link href="https://fr13ndsdp.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+                <title>Pope&#39;s Turbulent Flows: Scales of turbulent motion</title>
+                <link>https://fr13ndsdp.github.io/2021/turbulent-flows/</link>
+                <pubDate>Sun, 01 Aug 2021 11:04:53 &#43;0800</pubDate>
+                <author>Fr13ndSDP</author>
+                <guid>https://fr13ndsdp.github.io/2021/turbulent-flows/</guid>
+                <description></description>
+            </item><item>
                 <title>AMReX and Combustion</title>
                 <link>https://fr13ndsdp.github.io/2021/amrex-and-combustion/</link>
                 <pubDate>Tue, 27 Jul 2021 16:15:29 &#43;0800</pubDate>
@@ -74,14 +81,6 @@
                 <author>Fr13ndSDP</author>
                 <guid>https://fr13ndsdp.github.io/2020/simple-algorithm/</guid>
                 <description>SIMPLE 算法在一维稳态无粘不可压流动问题中的应用
-</description>
-            </item><item>
-                <title>#739 每日温度</title>
-                <link>https://fr13ndsdp.github.io/2020/739-daily-temperatures/</link>
-                <pubDate>Tue, 07 Jul 2020 10:29:37 &#43;0800</pubDate>
-                <author>Fr13ndSDP</author>
-                <guid>https://fr13ndsdp.github.io/2020/739-daily-temperatures/</guid>
-                <description>单调栈解法
 </description>
             </item></channel>
 </rss>

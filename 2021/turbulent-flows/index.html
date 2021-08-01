@@ -5,35 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>AMReX and Combustion | cat /var/log/life</title>
-        <meta name="Description" content="cat /var/log/life"><meta property="og:title" content="AMReX and Combustion" />
-<meta property="og:description" content="介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用" />
+        <title>Pope&#39;s Turbulent Flows: Scales of turbulent motion | cat /var/log/life</title>
+        <meta name="Description" content="cat /var/log/life"><meta property="og:title" content="Pope&#39;s Turbulent Flows: Scales of turbulent motion" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fr13ndsdp.github.io/2021/amrex-and-combustion/" />
-<meta property="article:published_time" content="2021-07-27T16:15:29+08:00" />
-<meta property="article:modified_time" content="2021-07-27T16:15:29+08:00" />
+<meta property="og:url" content="https://fr13ndsdp.github.io/2021/turbulent-flows/" />
+<meta property="article:published_time" content="2021-08-01T11:04:53+08:00" />
+<meta property="article:modified_time" content="2021-08-01T11:04:53+08:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="AMReX and Combustion"/>
-<meta name="twitter:description" content="介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用"/>
+<meta name="twitter:title" content="Pope&#39;s Turbulent Flows: Scales of turbulent motion"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Fr13ndSDP">
 <meta name="apple-mobile-web-app-title" content="Fr13ndSDP"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fr13ndsdp.github.io/2021/amrex-and-combustion/" /><link rel="prev" href="https://fr13ndsdp.github.io/2021/flow-stability-and-transition/" /><link rel="next" href="https://fr13ndsdp.github.io/2021/turbulent-flows/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fr13ndsdp.github.io/2021/turbulent-flows/" /><link rel="prev" href="https://fr13ndsdp.github.io/2021/amrex-and-combustion/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "AMReX and Combustion",
+        "headline": "Pope's Turbulent Flows: Scales of turbulent motion",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/fr13ndsdp.github.io\/2021\/amrex-and-combustion\/"
+            "@id": "https:\/\/fr13ndsdp.github.io\/2021\/turbulent-flows\/"
         },"image": {
                 "@type": "ImageObject",
                 "url": "https:\/\/fr13ndsdp.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "AMReX","wordcount":  27 ,
-        "url": "https:\/\/fr13ndsdp.github.io\/2021\/amrex-and-combustion\/","datePublished": "2021-07-27T16:15:29+08:00","dateModified": "2021-07-27T16:15:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            },"genre": "posts","keywords": "","wordcount":  0 ,
+        "url": "https:\/\/fr13ndsdp.github.io\/2021\/turbulent-flows\/","datePublished": "2021-08-01T11:04:53+08:00","dateModified": "2021-08-01T11:04:53+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
                 "logo": {
@@ -87,31 +87,31 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">AMReX and Combustion</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Pope&#39;s Turbulent Flows: Scales of turbulent motion</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Fr13ndSDP</a></span>&nbsp;
-                    <span class="post-category">收录于<a href="/categories/cfd/">
-                                <i class="far fa-folder fa-fw"></i>CFD
+                    <span class="post-category">收录于<a href="/categories/">
+                                <i class="far fa-folder fa-fw"></i>Categories
                             </a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2021-07-27>2021-07-27</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 27 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2021-08-01>2021-08-01</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 0 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 0 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>介绍CFD软件框架AMReX及其在湍流燃烧模拟中的应用</p></div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>本文于 2021-07-27 更新</span>
+                <span>本文于 2021-08-01 更新</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/2021/amrex-and-combustion/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/2021/turbulent-flows/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
                 <span></span>
@@ -120,14 +120,13 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/amrex/">AMReX</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/">Tags</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021/flow-stability-and-transition/" class="prev" rel="prev" title="Flow Stability and Transition: Introduction"><i class="fas fa-angle-left fa-fw"></i>Flow Stability and Transition: Introduction</a>
-            <a href="/2021/turbulent-flows/" class="next" rel="next" title="Pope&#39;s Turbulent Flows: Scales of turbulent motion">Pope&#39;s Turbulent Flows: Scales of turbulent motion<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2021/amrex-and-combustion/" class="prev" rel="prev" title="AMReX and Combustion"><i class="fas fa-angle-left fa-fw"></i>AMReX and Combustion</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
